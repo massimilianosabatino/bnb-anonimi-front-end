@@ -1,8 +1,10 @@
 @use '_partial/reset' as *;
 @use '_partial/variables' as *;
+@use '_partial/typo' as *;
 
-@import "~bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
 
-body {
-    background-color: white;
+body{
+    font-family: "Quicksand";
 }
+
