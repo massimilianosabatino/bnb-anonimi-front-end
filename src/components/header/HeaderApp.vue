@@ -1,7 +1,13 @@
 <script>
 export default {
-    name: 'HeaderApp'
+    name: 'HeaderApp',
+    methods: {
+        loginDrop() {
+
+        }
+    }
 }
+
 </script>
 
 <template>
@@ -9,15 +15,22 @@ export default {
         <div class="container h-100">
             <div class="d-flex align-items-center h-100 justify-content-between text-center">
                 <div id="logo"><img class="img-fluid" src="../../assets/img/logo.png" alt=""></div>
-                <ul class="list-unstyled d-flex justify-content-center align-items-center gap-5 m-0">
+                <ul class="list-unstyled d-flex justify-content-center align-items-center gap-2 gap-lg-5 m-0">
                     <li><a href="">Home</a></li>
                     <li><a href="">Appartamenti</a></li>
                     <li><a href="">Contatti</a></li>
                 </ul>
-                <ul class="list-unstyled d-flex justify-content-center aling-items-center gap-3 m-0">
-                    <li><a href=""><font-awesome-icon icon="fa-solid fa-user" /></a></li>
-                    <li><a href="">Register</a></li>
-                </ul>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" id="login">
+                        <font-awesome-icon icon="fa-solid fa-bars" class="me-1"/>
+                        <font-awesome-icon icon="fa-solid fa-user"/>
+                    </button>
+                    <ul class="dropdown-menu p-0 text-center">
+                        <li class="py-3 border-bottom"><a  href="#">Accedi</a></li>
+                        <li class="py-3" ><a href="">Registrati</a></li>
+                    </ul>
+                </div>
             </div>
 
         </div>
@@ -26,6 +39,7 @@ export default {
 
 <style lang="scss" scoped>
 @use '../../assets/scss/_partial/variables' as *;
+
 header {
     border-bottom: 2px solid $primary;
     box-shadow: 5px 0px 10px 3px $primary;
@@ -39,15 +53,31 @@ header {
     color: black;
     font-size: 1.25rem;
     font-weight: bold;
-    #logo{
+
+    #logo {
         width: 6.25rem;
     }
-    a{
+
+    a {
         text-decoration: none;
         color: inherit;
-        &:hover{
+
+        &:hover {
             color: $link;
         }
+    }
+
+    #login {
+        border: .0625rem solid lightgray;
+        border-radius: .4688rem;
+        padding: .3125rem .625rem;
+        background-color: transparent;
+        &::after{
+            display: none;
+        }
+    }
+    .item:hover{
+        background-color: transparent;
     }
 }
 </style>
