@@ -1,6 +1,6 @@
 <script>
 export default{
-    name:'Main'
+    name:'MainApp'
 }
 </script>
 <template>
@@ -8,6 +8,8 @@ export default{
         Main
     </main>
 </template>
-<style>
-
+<style lang="scss" scoped>
+    main{
+        margin-top: 100px;
+    }
 </style>

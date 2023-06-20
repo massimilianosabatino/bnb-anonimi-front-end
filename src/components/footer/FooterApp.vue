@@ -1,14 +1,12 @@
 <script>
-export default{
-    name:'Footer'
+export default {
+    name: 'FooterApp'
 }
 
 </script>
 <template>
-<footer>
-    Footer
-</footer>
+    <footer>
+        Footer
+    </footer>
 </template>
-<style>
-
-</style>
+<style></style>
