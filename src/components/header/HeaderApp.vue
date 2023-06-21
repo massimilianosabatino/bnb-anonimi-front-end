@@ -14,21 +14,34 @@ export default {
     <header>
         <div class="container h-100">
             <div class="d-flex align-items-center h-100 justify-content-between text-center">
-                <div id="logo"><img class="img-fluid" src="../../assets/img/logo.png" alt=""></div>
-                <ul class="list-unstyled d-flex justify-content-center align-items-center gap-2 gap-lg-5 m-0">
+                <div id="logo" class="d-none d-sm-block"><img class="img-fluid" src="../../assets/img/logo.png" alt="">
+                </div>
+                <div class="dropdown d-sm-none">
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        id="login">
+                        <font-awesome-icon icon="fa-solid fa-bars" />
+                    </button>
+                    <ul class="dropdown-menu p-0 text-center">
+                        <li><a class="py-3 border-bottom" href="" >Home</a></li>
+                        <li ><a class="py-3 border-bottom" href="" >Appartamenti</a></li>
+                        <li ><a class="py-3" href="" >Contatti</a></li>
+                    </ul>
+                </div>
+                <ul
+                    class="list-unstyled d-flex justify-content-center align-items-center gap-2 gap-lg-5 m-0 d-none d-sm-flex">
                     <li><a href="">Home</a></li>
                     <li><a href="">Appartamenti</a></li>
                     <li><a href="">Contatti</a></li>
                 </ul>
                 <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" id="login">
-                        <font-awesome-icon icon="fa-solid fa-bars" class="me-1"/>
-                        <font-awesome-icon icon="fa-solid fa-user"/>
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        id="login">
+                        <font-awesome-icon icon="fa-solid fa-bars" class="me-1" />
+                        <font-awesome-icon icon="fa-solid fa-user" />
                     </button>
                     <ul class="dropdown-menu p-0 text-center">
-                        <li class="py-3 border-bottom"><a  href="#">Accedi</a></li>
-                        <li class="py-3" ><a href="">Registrati</a></li>
+                        <li ><a class="py-3 border-bottom d-block" href="#">Accedi</a></li>
+                        <li ><a class="py-3" href="">Registrati</a></li>
                     </ul>
                 </div>
             </div>
@@ -53,6 +66,7 @@ header {
     color: black;
     font-size: 1.25rem;
     font-weight: bold;
+    background-color: white;
 
     #logo {
         width: 6.25rem;
@@ -61,7 +75,7 @@ header {
     a {
         text-decoration: none;
         color: inherit;
-
+        display: block;
         &:hover {
             color: $link;
         }
@@ -72,12 +86,13 @@ header {
         border-radius: .4688rem;
         padding: .3125rem .625rem;
         background-color: transparent;
-        &::after{
+
+        &::after {
             display: none;
         }
     }
-    .item:hover{
+
+    .item:hover {
         background-color: transparent;
     }
-}
-</style>
+}</style>
