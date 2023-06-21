@@ -1,6 +1,7 @@
 import axios from "axios";
 import {defineStore} from 'pinia';
 
+
 export const useApiStore = defineStore('api',{
     state: ()=>{
         return {
@@ -9,7 +10,7 @@ export const useApiStore = defineStore('api',{
         }
     },
     actions:{
-        async getData(){
+         getData(){
             axios.get(this.api)
                 .then((response) => {
                     this.data = response.data.results.data;
@@ -19,8 +20,7 @@ export const useApiStore = defineStore('api',{
                     console.log(error);
                 })
         }
-    }
-})
+    }})
 
 
 
