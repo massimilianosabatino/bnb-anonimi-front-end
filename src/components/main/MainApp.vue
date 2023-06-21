@@ -15,6 +15,7 @@ export default {
   },
   computed: {
     ...mapState(useApiStore, ["data"]),
+    ...mapState(useSearchStore, ['address'])
   },
   created() {
     this.getData();
@@ -26,7 +27,7 @@ export default {
   <div class="container">
     <SearchApp />
     <div class="row g-3">
-      <div class="col col-md-4" v-for="apartment in data">
+      <div class="col col-md-4" v-for="apartment in address">
         <CardList :apartment="apartment" />
       </div>
     </div>

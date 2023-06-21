@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 export const useSearchStore = defineStore("search", {
   state: () => {
     return {
-      api: "http://127.0.0.1:8000/api/apartment/{params}",
+      api: "http://127.0.0.1:8000/api/search",
       address: null,
       lat: null,
       lon: null,
@@ -13,22 +13,14 @@ export const useSearchStore = defineStore("search", {
   },
   actions: {
     getAddress() {
-      axios.post(this.api,{
-            headers:{
-                "Content-type": "application/json"
-            },
-            body:{
-                
-            },
-            params:{
-                lat:this.lat,
-                lon:this.lon,
-                dist:this.dist
-            }
+      axios
+        .post(this.api, {
+            lat:this.lat,
+            lon:this.lon,
+            dist:this.dist
         })
         .then((response) => {
           this.address = response.data.results;
-          console.log(this.address);
         })
         .catch((error) => {
           console.log(error);
