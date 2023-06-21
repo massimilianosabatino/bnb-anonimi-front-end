@@ -1,30 +1,36 @@
 <script>
 import { useApiStore } from "../../apiStore";
-import {mapState} from "pinia";
-import { mapActions } from "pinia";
+import { useSearchStore } from "../../searchStore";
+import { mapState,mapActions } from "pinia";
+import CardList from "./CardList.vue";
+import SearchApp from "../utils/SearchApp.vue";
 export default {
   name: "MainApp",
-  methods:{
-    ...mapActions(useApiStore,['getData']),
-    },
-  computed:{
-     ...mapState(useApiStore,['data'])
-    
+  components: {
+    CardList,
+    SearchApp
   },
-  created(){
-    this.getData()
-  }
-}
-
+  methods: {
+    ...mapActions(useApiStore, ["getData"]),
+  },
+  computed: {
+    ...mapState(useApiStore, ["data"]),
+  },
+  created() {
+    this.getData();
+  },
+};
 </script>
 
 <template>
-  <main>
-    <div class="prova">
-      <ul>
-        <li v-for="apartment in data">{{ apartment.title }}</li>
-      </ul>
+  <div class="container">
+    <SearchApp />
+    <div class="row g-3">
+      <div class="col col-md-4" v-for="apartment in data">
+        <CardList :apartment="apartment" />
+      </div>
     </div>
-  </main>
+  </div>
 </template>
-<style></style>
+<style>
+</style>
