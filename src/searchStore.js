@@ -15,7 +15,8 @@ export const useSearchStore = defineStore("search", {
   },
   actions: {
       searchApartment() {
-        console.log(this.clicked);
+        // console.log(this.clicked);
+        console.log(this.apartments);
       axios
         .post(this.api, {
             lat:this.lat,
@@ -36,6 +37,7 @@ export const useSearchStore = defineStore("search", {
       axios.get('http://127.0.0.1:8000/api/services')
       .then((respsonse) => {
         this.services = respsonse.data.results;
+        console.log(this.services);
       })
     },
     chePalle() {
@@ -62,5 +64,11 @@ export const useSearchStore = defineStore("search", {
         this.lon = data.data.result.position.lng;
       });
     },
+    filteredServices(){
+      console.log(this.apartments);
+      this.apartments.forEach(apartment => {
+        let services = apartment.services;
+      });
+    }
   },
 });
