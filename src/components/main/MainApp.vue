@@ -1,12 +1,7 @@
 <script>
-
-export default{
-    name:'MainApp'
-}
-
 import { useApiStore } from "../../apiStore";
 import { useSearchStore } from "../../searchStore";
-import { mapState,mapActions } from "pinia";
+import { mapState, mapActions } from "pinia";
 import CardList from "./CardList.vue";
 import SearchApp from "../utils/SearchApp.vue";
 export default {
@@ -31,7 +26,7 @@ export default {
 <template>
   <div class="container">
     <SearchApp />
-    <div v-if="address!==null" class="row g-3">
+    <div v-if="address !== null" class="row g-3">
       <div class="col col-md-4" v-for="apartment in address">
         <CardList :apartment="apartment" />
       </div>
@@ -44,7 +39,7 @@ export default {
   </div>
 </template>
 <style lang="scss" scoped>
-    main{
-        margin-top: 100px;
-    }
+main {
+  margin-top: 100px;
+}
 </style>
