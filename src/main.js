@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import './assets/scss/main.scss';
+import { router } from './router';
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import * as bootstrap from 'bootstrap';
@@ -27,5 +28,5 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 library.add(faUser,faBars,faInstagram,faTwitter,faFacebook);
 
 const pinia = createPinia();
-createApp(App).use(pinia).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+createApp(App).use(pinia).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
 

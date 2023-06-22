@@ -5,26 +5,38 @@ export const useSearchStore = defineStore("search", {
   state: () => {
     return {
       api: "http://127.0.0.1:8000/api/search",
-      address: null,
+      apartments: null,
       lat: null,
       lon: null,
       dist: 20,
+      services: null,
+      clicked: [],
     };
   },
   actions: {
-    getAddress() {
+      searchApartment() {
+        console.log(this.clicked);
       axios
         .post(this.api, {
             lat:this.lat,
             lon:this.lon,
-            dist:this.dist
+            dist:this.dist,
+            service:this.clicked
         })
         .then((response) => {
-          this.address = response.data.results;
+          console.log(response);
+          this.apartments = response.data.results;
         })
         .catch((error) => {
           console.log(error);
         });
+    },
+    // Chiamata per i servizi
+    getServices(){
+      axios.get('http://127.0.0.1:8000/api/services')
+      .then((respsonse) => {
+        this.services = respsonse.data.results;
+      })
     },
     chePalle() {
       var options = {

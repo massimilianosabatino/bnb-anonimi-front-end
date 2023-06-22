@@ -12,6 +12,9 @@ export default {
     <div class="card-body">
       <h5 class="card-title">{{ apartment.title }}</h5>
       <p class="card-text">{{ apartment.address }}</p>
+      <div v-for="service in apartment.services">
+        {{ service.name }}
+      </div>
       <a href="#" class="btn btn-primary">Info</a>
     </div>
   </div>

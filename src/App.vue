@@ -1,14 +1,13 @@
 <script>
 import HeaderApp from "./components/header/HeaderApp.vue";
 import FooterApp from "./components/footer/FooterApp.vue";
-import MainApp from "./components/main/MainApp.vue";
 import JumboApp from "./components/header/JumboApp.vue";
+import { router } from "./router";
 export default {
   name: "App",
   components: {
     HeaderApp,
     JumboApp,
-    MainApp,
     FooterApp
   },
 };
@@ -17,8 +16,8 @@ export default {
 <template>
   <HeaderApp />
   <JumboApp />
-  <MainApp />
-  <FooterApp />
+  <router-view></router-view>
+  <FooterApp></FooterApp>
 </template>
 
 <style lang="scss">

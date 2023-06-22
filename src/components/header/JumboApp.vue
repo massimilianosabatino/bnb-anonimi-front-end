@@ -1,6 +1,10 @@
 <script>
+import SearchApp from '../utils/SearchApp.vue';
 export default {
-    name: 'JumboApp'
+    name: 'JumboApp',
+    components:{
+        SearchApp,
+    }
 }
 </script>
 
@@ -8,7 +12,7 @@ export default {
     <div id="jumbo">
         <div class="container">
             <div class="d-flex align-items-center justify-content-center">
-                <input type="text" id="search" placeholder="Cerca per città o indirizzo">
+                <SearchApp></SearchApp>
             </div>
 
         </div>
