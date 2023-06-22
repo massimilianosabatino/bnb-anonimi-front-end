@@ -26,8 +26,13 @@ export default {
 <template>
   <div class="container">
     <SearchApp />
-    <div class="row g-3">
+    <div v-if="address!==null" class="row g-3">
       <div class="col col-md-4" v-for="apartment in address">
+        <CardList :apartment="apartment" />
+      </div>
+    </div>
+    <div v-else class="row g-3">
+      <div class="col col-md-4" v-for="apartment in data">
         <CardList :apartment="apartment" />
       </div>
     </div>
