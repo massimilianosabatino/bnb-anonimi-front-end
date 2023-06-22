@@ -1,15 +1,98 @@
 <script>
 export default {
-    name:'Header'
+    name: 'HeaderApp',
+    methods: {
+        loginDrop() {
+
+        }
+    }
 }
+
 </script>
 
 <template>
     <header>
-        Header
+        <div class="container h-100">
+            <div class="d-flex align-items-center h-100 justify-content-between text-center">
+                <div id="logo" class="d-none d-sm-block"><img class="img-fluid" src="../../assets/img/logo.png" alt="">
+                </div>
+                <div class="dropdown d-sm-none">
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        id="login">
+                        <font-awesome-icon icon="fa-solid fa-bars" />
+                    </button>
+                    <ul class="dropdown-menu p-0 text-center">
+                        <li><a class="py-3 border-bottom" href="" >Home</a></li>
+                        <li ><a class="py-3 border-bottom" href="" >Appartamenti</a></li>
+                        <li ><a class="py-3" href="" >Contatti</a></li>
+                    </ul>
+                </div>
+                <ul
+                    class="list-unstyled d-flex justify-content-center align-items-center gap-2 gap-lg-5 m-0 d-none d-sm-flex">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Appartamenti</a></li>
+                    <li><a href="">Contatti</a></li>
+                </ul>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        id="login">
+                        <font-awesome-icon icon="fa-solid fa-bars" class="me-1" />
+                        <font-awesome-icon icon="fa-solid fa-user" />
+                    </button>
+                    <ul class="dropdown-menu p-0 text-center">
+                        <li ><a class="py-3 border-bottom d-block" href="#">Accedi</a></li>
+                        <li ><a class="py-3" href="">Registrati</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
     </header>
 </template>
 
 <style lang="scss" scoped>
-   
-</style>
+@use '../../assets/scss/_partial/variables' as *;
+
+header {
+    border-bottom: 2px solid $primary;
+    box-shadow: 5px 0px 10px 3px $primary;
+    width: 100%;
+    height: 6.25rem;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    color: black;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: white;
+
+    #logo {
+        width: 6.25rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        &:hover {
+            color: $link;
+        }
+    }
+
+    #login {
+        border: .0625rem solid lightgray;
+        border-radius: .4688rem;
+        padding: .3125rem .625rem;
+        background-color: transparent;
+
+        &::after {
+            display: none;
+        }
+    }
+
+    .item:hover {
+        background-color: transparent;
+    }
+}</style>

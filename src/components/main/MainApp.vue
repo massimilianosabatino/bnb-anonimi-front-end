@@ -1,4 +1,9 @@
 <script>
+
+export default{
+    name:'MainApp'
+}
+
 import { useApiStore } from "../../apiStore";
 import { useSearchStore } from "../../searchStore";
 import { mapState,mapActions } from "pinia";
@@ -38,5 +43,8 @@ export default {
     </div>
   </div>
 </template>
-<style>
+<style lang="scss" scoped>
+    main{
+        margin-top: 100px;
+    }
 </style>
