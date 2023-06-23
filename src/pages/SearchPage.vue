@@ -13,7 +13,7 @@ export default {
     ...mapActions(useApiStore, ["getData"]),
     ...mapActions(useSearchStore, ["getServices"]),
     ...mapActions(useSearchStore, ["searchApartment"]),
-    ...mapActions(useSearchStore, ["filteredServices"])
+    ...mapActions(useSearchStore, ["filteredServices"]),
   },
   computed: {
     ...mapState(useApiStore, ["data"]),
@@ -27,7 +27,7 @@ export default {
   },
   mounted() {
     // this.filteredServices();
-  }
+  },
 };
 </script>
 
@@ -63,9 +63,7 @@ export default {
             <CardList :apartment="apartment" />
           </div>
         </div>
-        <div v-else class="alert alert-danger">
-          Nessun appartamento
-        </div>
+        <div v-else class="alert alert-danger">Nessun appartamento</div>
         <!-- <div v-else class="row g-3">
           <div class="col col-md-4" v-for="apartment in data">
             <CardList :apartment="apartment" />
