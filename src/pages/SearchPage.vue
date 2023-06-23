@@ -13,7 +13,7 @@ export default {
     ...mapActions(useApiStore, ["getData"]),
     ...mapActions(useSearchStore, ["getServices"]),
     ...mapActions(useSearchStore, ["searchApartment"]),
-    ...mapActions(useSearchStore, ["filteredServices"])
+    ...mapActions(useSearchStore, ["filteredServices"]),
   },
   computed: {
     ...mapState(useApiStore, ["data"]),
@@ -25,9 +25,9 @@ export default {
     this.getData();
     this.getServices();
   },
-  mounted(){
+  mounted() {
     // this.filteredServices();
-  }
+  },
 };
 </script>
 
@@ -37,21 +37,10 @@ export default {
       <div class="col-2">
         <ul class="list-unstyled">
           <li v-for="service in services">
-            <input
-              type="checkbox"
-              class="btn-check"
-              :id="service.id"
-              autocomplete="off"
-              :value="service.id"
-              :name="service.name"
-              @change.stop="searchApartment()"
-              v-model="clicked"
-            />
+            <input type="checkbox" class="btn-check" :id="service.id" autocomplete="off" :value="service.id" :name="service.name" @change.stop="searchApartment()" v-model="clicked" />
             <label
               class="btn btn-outline-dark d-flex p-1 m-0 justify-content-center align-items-center rounded-2 flex-column"
-              :for="service.id"
-              >{{ service.name }}</label
-            ><br />
+              :for="service.id">{{ service.name }}</label><br />
           </li>
         </ul>
       </div>
@@ -73,9 +62,7 @@ export default {
             <CardList :apartment="apartment" />
           </div>
         </div>
-        <div v-else class="alert alert-danger">
-          Nessun appartamento
-        </div>
+        <div v-else class="alert alert-danger">Nessun appartamento</div>
         <!-- <div v-else class="row g-3">
           <div class="col col-md-4" v-for="apartment in data">
             <CardList :apartment="apartment" />
