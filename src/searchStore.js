@@ -5,26 +5,38 @@ export const useSearchStore = defineStore("search", {
   state: () => {
     return {
       api: "http://127.0.0.1:8000/api/search",
-      address: null,
+      apartments: null,
       lat: null,
       lon: null,
       dist: 20,
+      services: null,
+      clicked: [],
     };
   },
   actions: {
-    getAddress() {
+      searchApartment() {
+        console.log(this.apartments);
       axios
         .post(this.api, {
             lat:this.lat,
             lon:this.lon,
-            dist:this.dist
+            dist:this.dist,
+            service:this.clicked
         })
         .then((response) => {
-          this.address = response.data.results;
+          this.apartments = response.data.results;
         })
         .catch((error) => {
           console.log(error);
         });
+    },
+    // Chiamata per i servizi
+    getServices(){
+      axios.get('http://127.0.0.1:8000/api/services')
+      .then((respsonse) => {
+        this.services = respsonse.data.results;
+        console.log(this.services);
+      })
     },
     chePalle() {
       var options = {
@@ -44,11 +56,28 @@ export const useSearchStore = defineStore("search", {
       var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
       var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
       let searchbar = document.getElementsByClassName("tt-search-box-input");
+      let search = document.getElementsByClassName('tt-search-box');
+      let boxInput = document.getElementsByClassName('tt-search-box-input-container');
+      console.log(search);
+      
       input.append(searchBoxHTML);
       ttSearchBox.on("tomtom.searchbox.resultselected", (data) => {
         this.lat = data.data.result.position.lat;
         this.lon = data.data.result.position.lng;
       });
+      boxInput.forEach(element => {
+        element.classList.add('rounded');
+      })
+      search.forEach(element => {
+        element.classList.add('mt-0');
+        console.log(search);
+      });
     },
+    // filteredServices(){
+    //   console.log(this.apartments);
+    //   this.apartments.forEach(apartment => {
+    //     let services = apartment.services;
+    //   });
+    // }
   },
 });

@@ -9,13 +9,11 @@ export default {
     CardList,
   },
   methods: {
-    ...mapActions(useSearchStore, ["getAddress"]),
+    ...mapActions(useSearchStore, ["searchApartment"]),
     ...mapActions(useSearchStore,["chePalle"])
   },
   computed: {
-    ...mapState(useSearchStore, ["address"]),
-    ...mapWritableState(useSearchStore, ["searchKey"]),
-    ...mapWritableState(useSearchStore,["lat"]),
+    ...mapState(useSearchStore, ["apartments"]),
   },
   mounted(){
     this.chePalle();
@@ -24,14 +22,20 @@ export default {
 </script>
 <template>
   <!--Search-->
-  <nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
-      <form @submit.prevent="getAddress" class="d-flex" role="search">
+  <nav>
+    <div class="container">
+      <form @submit.prevent="searchApartment" class="d-flex justify-content-center w-100" role="search">
         <!-- <input class="form-control me-2" type="search" placeholder="Cerca un indirizzo" aria-label="Search" v-model="searchKey" /> -->
         <div id="address"></div>
-        <button class="btn btn-outline-success" type="submit">Cerca</button>
+        <button class="btn btn-success" type="submit">Cerca</button>
       </form>
     </div>
   </nav>
   <!--/Search-->
 </template>
+<style lang="scss" scoped>
+  #address{
+    width: 100%;
+    background-color: transparent;
+  }
+</style>

@@ -22,7 +22,7 @@ export default {
                         <font-awesome-icon icon="fa-solid fa-bars" />
                     </button>
                     <ul class="dropdown-menu p-0 text-center">
-                        <li><a class="py-3 border-bottom" href="" >Home</a></li>
+                        <li><router-link :to="{name: 'Home' }">Home</router-link></li>
                         <li ><a class="py-3 border-bottom" href="" >Appartamenti</a></li>
                         <li ><a class="py-3" href="" >Contatti</a></li>
                     </ul>
