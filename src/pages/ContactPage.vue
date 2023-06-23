@@ -1,14 +1,14 @@
+
 <script>
 export default {
-    name: 'Home',
+    
 }
 </script>
-<template >
-    <div >
+<template lang="">
+    <div>
         
     </div>
 </template>
-
 <style lang="scss" scoped>
     
 </style>
