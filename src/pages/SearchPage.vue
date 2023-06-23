@@ -9,17 +9,47 @@ export default {
   components: {
     CardList,
   },
+  data(){
+    return{
+      start:0,
+      finish:9
+
+    }
+  },
+
+
+
   methods: {
     ...mapActions(useApiStore, ["getData"]),
     ...mapActions(useSearchStore, ["getServices"]),
     ...mapActions(useSearchStore, ["searchApartment"]),
     ...mapActions(useSearchStore, ["filteredServices"]),
+    next(){
+      if(this.finish>=this.services.length-1){
+        this.start=0;
+        this.finish=9;
+      }else{
+        this.start+=9;
+        this.finish+=9;
+      }
+      
+    },
+    prev(){
+      if(this.start<=0){
+        this.finish=this.services.length-1;
+        this.start=this.services.length-9;
+      }else{
+        this.start-=9;
+        this.finish-=9;
+      }
+    }
   },
   computed: {
     ...mapState(useApiStore, ["data"]),
     ...mapState(useSearchStore, ["apartments"]),
     ...mapState(useSearchStore, ["services"]),
     ...mapWritableState(useSearchStore, ["clicked"]),
+
   },
   created() {
     this.getData();
@@ -33,48 +63,39 @@ export default {
 
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-2">
-        <ul class="list-unstyled">
-          <li v-for="service in services">
-            <input type="checkbox" class="btn-check" :id="service.id" autocomplete="off" :value="service.id"
-              :name="service.name" @change.stop="searchApartment()" v-model="clicked" />
-            <label
-              class="btn btn-outline-dark d-flex p-1 m-0 justify-content-center align-items-center rounded-2 flex-column"
-              :for="service.id">{{ service.name }}</label><br />
-          </li>
-        </ul>
-      </div>
-      <div class="col-10">
-        <!-- <div v-if="apartments !== null" class="row g-3">
-          <div class="col col-md-4" v-for="apartment in apartments">
-            <div v-if="apartment.services" class="prova">
-              <ul>
-                <li v-for="service in apartment.services">
-                  <CardList v-if="service.id==clicked " :apartment="apartment" />
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div> -->
 
-        <div v-if="apartments !== null" class="row g-3">
-          <div class="col col-md-4" v-for="apartment in apartments">
-            <CardList :apartment="apartment" />
-          </div>
-        </div>
-        <div v-else class="alert alert-danger">Nessun appartamento</div>
-        <!-- <div v-else class="row g-3">
-          <div class="col col-md-4" v-for="apartment in data">
-            <CardList :apartment="apartment" />
-          </div>
-        </div> -->
-      </div>
-    </div>
+    <nav>
+      <ul class="list-unstyled d-flex justify-content-between align-items-center">
+        <li role="button" class="me-3" @click="prev()"><i class="fa-solid fa-chevron-left"></i></li>
+        <li role="button" v-for="(service, index) in services.slice(this.start, this.finish)"  class="mx-3">
+          <input type="checkbox" class="btn-check" :id="service.id">
+          <label class="d-flex flex-column justify-content-center align-items-center" :for="service.id">
+            <p class="icona-green" v-html="service.icon"></p>
+            <p class="hover-green">{{ service.name }}</p>
+          
+          </label>
+
+        </li>
+        <li role="button" class="ms-3" @click="next()"><i class="fa-solid fa-chevron-right"></i></li>
+      </ul>
+    </nav>
   </div>
+    
+    
 </template>
+
 <style lang="scss" scoped>
-main {
-  margin-top: 100px;
+
+@use "../assets/scss/_partial/variables" as *;
+.container {
+  margin-top: 150px;
 }
+.hover-green:hover{
+  color: $link;
+  text-decoration: 2px underline $link;
+}
+.icona-green:hover{
+  color: $link;
+}
+
 </style>
