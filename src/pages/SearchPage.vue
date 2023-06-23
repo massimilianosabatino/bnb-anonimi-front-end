@@ -16,9 +16,6 @@ export default {
 
     }
   },
-
-
-
   methods: {
     ...mapActions(useApiStore, ["getData"]),
     ...mapActions(useSearchStore, ["getServices"]),
@@ -64,6 +61,7 @@ export default {
 <template>
   <div class="container">
 
+    <!-- NAVBAR ULTRAPHEEGA -->
     <nav>
       <ul class="list-unstyled d-flex justify-content-between align-items-center">
         <li role="button" class="me-3" @click="prev()"><i class="fa-solid fa-chevron-left"></i></li>
@@ -79,6 +77,8 @@ export default {
         <li role="button" class="ms-3" @click="next()"><i class="fa-solid fa-chevron-right"></i></li>
       </ul>
     </nav>
+    <!-- /FINE NAVBAR ULTRAPHEEGA -->
+    
   </div>
     
     
