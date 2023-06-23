@@ -74,7 +74,7 @@ export default {
           </div>
         </div>
         <div v-else class="alert alert-danger">
-          Nessun appartamento con questi filtri
+          Nessun appartamento
         </div>
         <!-- <div v-else class="row g-3">
           <div class="col col-md-4" v-for="apartment in data">
