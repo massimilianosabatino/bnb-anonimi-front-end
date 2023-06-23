@@ -11,7 +11,7 @@ export default {
 <template >
     <div id="jumbo">
         <div class="container">
-            <div class="d-flex align-items-center justify-content-center">
+            <div class="w-75 mx-auto">
                 <SearchApp></SearchApp>
             </div>
 

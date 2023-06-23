@@ -26,7 +26,7 @@ export default {
     this.getServices();
   },
   mounted(){
-    this.filteredServices();
+    // this.filteredServices();
   }
 };
 </script>
@@ -56,7 +56,7 @@ export default {
         </ul>
       </div>
       <div class="col-10">
-        <div v-if="apartments !== null" class="row g-3">
+        <!-- <div v-if="apartments !== null" class="row g-3">
           <div class="col col-md-4" v-for="apartment in apartments">
             <div v-if="apartment.services" class="prova">
               <ul>
@@ -66,18 +66,21 @@ export default {
               </ul>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <!-- <div v-if="apartments !== null" class="row g-3">
+        <div v-if="apartments !== null" class="row g-3">
           <div class="col col-md-4" v-for="apartment in apartments">
             <CardList :apartment="apartment" />
           </div>
-        </div> -->
-        <div v-else class="row g-3">
+        </div>
+        <div v-else class="alert alert-danger">
+          Nessun appartamento con questi filtri
+        </div>
+        <!-- <div v-else class="row g-3">
           <div class="col col-md-4" v-for="apartment in data">
             <CardList :apartment="apartment" />
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

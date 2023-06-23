@@ -15,7 +15,6 @@ export const useSearchStore = defineStore("search", {
   },
   actions: {
       searchApartment() {
-        // console.log(this.clicked);
         console.log(this.apartments);
       axios
         .post(this.api, {
@@ -25,7 +24,6 @@ export const useSearchStore = defineStore("search", {
             service:this.clicked
         })
         .then((response) => {
-          console.log(response);
           this.apartments = response.data.results;
         })
         .catch((error) => {
@@ -58,17 +56,28 @@ export const useSearchStore = defineStore("search", {
       var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
       var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
       let searchbar = document.getElementsByClassName("tt-search-box-input");
+      let search = document.getElementsByClassName('tt-search-box');
+      let boxInput = document.getElementsByClassName('tt-search-box-input-container');
+      console.log(search);
+      
       input.append(searchBoxHTML);
       ttSearchBox.on("tomtom.searchbox.resultselected", (data) => {
         this.lat = data.data.result.position.lat;
         this.lon = data.data.result.position.lng;
       });
-    },
-    filteredServices(){
-      console.log(this.apartments);
-      this.apartments.forEach(apartment => {
-        let services = apartment.services;
+      boxInput.forEach(element => {
+        element.classList.add('rounded');
+      })
+      search.forEach(element => {
+        element.classList.add('mt-0');
+        console.log(search);
       });
-    }
+    },
+    // filteredServices(){
+    //   console.log(this.apartments);
+    //   this.apartments.forEach(apartment => {
+    //     let services = apartment.services;
+    //   });
+    // }
   },
 });
