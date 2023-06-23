@@ -21,13 +21,15 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faFan } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 
 /* add icons to the library */
-library.add(faUser,faBars,faInstagram,faTwitter,faFacebook,faFan);
+
+library.add(faUser,faBars,faEnvelope,faInstagram,faTwitter,faFacebook,faFan);
 
 const pinia = createPinia();
 createApp(App).use(pinia).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
