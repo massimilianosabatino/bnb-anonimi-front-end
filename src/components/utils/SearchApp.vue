@@ -22,20 +22,23 @@ export default {
 </script>
 <template>
   <!--Search-->
-  <nav>
     <div class="container">
-      <form @submit.prevent="searchApartment" class="d-flex justify-content-center w-100" role="search">
-        <!-- <input class="form-control me-2" type="search" placeholder="Cerca un indirizzo" aria-label="Search" v-model="searchKey" /> -->
-        <div id="address"></div>
-        <button class="btn btn-success" type="submit">Cerca</button>
-      </form>
+      <div id="search">
+        <form @submit.prevent="searchApartment" class="d-flex justify-content-center gap-3" role="search">
+          <!-- <input class="form-control me-2" type="search" placeholder="Cerca un indirizzo" aria-label="Search" v-model="searchKey" /> -->
+          <div id="address"></div>
+          <button class="btn btn-sm btn-success" type="submit">Cerca</button>
+        </form>
+      </div>
     </div>
-  </nav>
   <!--/Search-->
 </template>
 <style lang="scss" scoped>
+#search{
+  padding-top: 100px;
+}
   #address{
-    width: 100%;
+    width: 75%;
     background-color: transparent;
   }
 </style>
