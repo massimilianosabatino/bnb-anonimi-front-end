@@ -23,15 +23,15 @@ export default {
                     </button>
                     <ul class="dropdown-menu p-0 text-center">
                         <li><router-link :to="{name: 'Home' }">Home</router-link></li>
-                        <li ><a class="py-3 border-bottom" href="" >Appartamenti</a></li>
-                        <li ><a class="py-3" href="" >Contatti</a></li>
+                        <li ><router-link :to="{ name: 'Search'}">Appartamenti</router-link></li>
+                        <li ><router-link :to="{ name: 'Contact'}">Contatti</router-link></li>
                     </ul>
                 </div>
                 <ul
                     class="list-unstyled d-flex justify-content-center align-items-center gap-2 gap-lg-5 m-0 d-none d-sm-flex">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Appartamenti</a></li>
-                    <li><a href="">Contatti</a></li>
+                    <li><router-link :to="{name: 'Home' }">Home</router-link></li>
+                    <li><router-link :to="{ name: 'Search'}">Appartamenti</router-link></li>
+                    <li><router-link :to="{ name: 'Contact'}">Contatti</router-link></li>
                 </ul>
                 <div class="dropdown">
                     <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
