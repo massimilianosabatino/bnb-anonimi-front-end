@@ -15,7 +15,7 @@ export const useSearchStore = defineStore("search", {
   },
   actions: {
       searchApartment() {
-        console.log(this.apartments);
+        console.log(this.clicked);
       axios
         .post(this.api, {
             lat:this.lat,
