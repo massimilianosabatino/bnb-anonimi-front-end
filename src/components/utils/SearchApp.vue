@@ -1,13 +1,9 @@
 <script>
 import { useSearchStore } from "../../searchStore";
 import { mapState, mapActions, mapWritableState } from "pinia";
-import CardList from "../main/CardList.vue";
 
 export default {
   name: "SearchApp",
-  components: {
-    CardList,
-  },
   methods: {
     ...mapActions(useSearchStore, ["searchApartment"]),
     ...mapActions(useSearchStore,["chePalle"]),

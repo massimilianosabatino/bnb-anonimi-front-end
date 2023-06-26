@@ -1,10 +1,12 @@
 <script>
-import { useApiStore } from "../apiStore";
-import { useSearchStore } from "../searchStore";
-import { mapState, mapActions, mapWritableState } from "pinia";
-import CardList from "../components/main/CardList.vue";
+import CardList from "../components/utils/CardList.vue";
 import SearchApp from "../components/utils/SearchApp.vue";
 import FilterApp from "../components/utils/FilterApp.vue";
+import { useApiStore } from "../apiStore";
+import { useSearchStore } from "../searchStore";
+
+import { mapState, mapActions, mapWritableState } from "pinia";
+
 
 export default {
   name: "SearchPage",
@@ -13,6 +15,16 @@ export default {
     SearchApp,
     FilterApp
   },
+  methods:{
+    ...mapActions(useApiStore, ["getData"]),
+
+  },
+  computed:{
+    ...mapState(useApiStore, ["data"]),
+  },
+  created(){
+    this.getData()
+  }
 };
 </script>
 
@@ -29,7 +41,6 @@ export default {
 @use "../assets/scss/_partial/variables" as *;
 
 main {
-  margin-top: 100px;
-  height: calc(100vh - 150px);
+  margin-top: 9.375rem;
 }
 </style>

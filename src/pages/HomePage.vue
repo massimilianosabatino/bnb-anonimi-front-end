@@ -67,7 +67,7 @@ export default defineComponent({
 //     height: calc(100dvh - 9.375rem);
 // }
 .container {
-    margin-top: 100px;
+    margin-top: 6.25rem;
     height: calc(100dvh - 9.375rem);
 }
 
