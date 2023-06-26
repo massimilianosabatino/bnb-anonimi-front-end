@@ -1,8 +1,8 @@
 <script>
+import axios from "axios";
 import { useApiStore } from "../apiStore";
 import { useSearchStore } from "../searchStore";
 import { useDetailStore } from "../detailStore";
-import axios from "axios";
 import { mapState, mapActions,mapWritableState } from "pinia";
 
 export default {
@@ -37,7 +37,7 @@ export default {
     <!--Contenuto(Immagini e info)-->
     <div class="container mb-0">
       <div>
-        <img class="rounded-3 img-fluid" src="https://picsum.photos/seed/picsum/500/300" alt="apartment title" />
+        <img class="rounded-3 img-fluid" :src="detail.cover_image" :alt="detail.title" />
         <!--In caso aggiungere Gallery-->
       </div>
       <div class="d-flex justify-content-between align-items-center my-5">
@@ -47,7 +47,7 @@ export default {
           </ul>
         </div>
         <div class="d-flex align-items-center">
-          <p class="me-5 mb-0 fs-5 fw-bold">{{ detail.user.name}}</p>
+          <p class="me-5 mb-0 fs-5 ">Il proprietario è <strong>{{ detail.user.name}}</strong></p>
           <div class="card px-1">
             <div class="card-body">
               <p class="card-text"><strong>{{ detail.price}}€</strong>/persona</p>

@@ -9,16 +9,6 @@ export default {
     components: {
         CardList,
     },
-    data() {
-        return {
-            start: 0,
-            finish: 9,
-            price: 20,
-            rooms: 1,
-            beds: 1,
-            bath: 1
-        }
-    },
     methods: {
         ...mapActions(useApiStore, ["getData"]),
         ...mapActions(useSearchStore, ["getServices"]),
@@ -38,13 +28,21 @@ export default {
     },
     computed: {
         ...mapState(useSearchStore, ["services"]),
+        ...mapState(useSearchStore, ['apartments']),
         ...mapWritableState(useSearchStore, ["clicked"]),
         ...mapState(useApiStore, ["data"]),
+        ...mapWritableState(useSearchStore, ["dist"]),
+        ...mapWritableState(useSearchStore, ["start"]),
+        ...mapWritableState(useSearchStore, ["finish"]),
+        ...mapWritableState(useSearchStore, ["price"]),
+        ...mapWritableState(useSearchStore, ["rooms"]),
+        ...mapWritableState(useSearchStore, ["beds"]),
+        ...mapWritableState(useSearchStore, ["bath"]),
     },
     created() {
         this.getServices();
         this.getData()
-    }
+    },
 }
 </script>
 <template>
@@ -55,7 +53,8 @@ export default {
             aria-controls="offcanvasBottom">Filtri</button>
 
         <!-- Offcanvas bottom -->
-        <div class="offcanvas offcanvas-bottom rounded-2" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+        <div class="offcanvas offcanvas-bottom rounded-2" tabindex="-1" id="offcanvasBottom"
+            aria-labelledby="offcanvasBottomLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasBottomLabel">Applica Filtri di ricerca</h5>
                 <a role="button" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-solid fa-xmark"></i></a>
@@ -89,25 +88,25 @@ export default {
                     <div class="pb-3">
                         <label class="form-label d-block fs-5 fw-bold" for="rooms">Stanze</label>
                         <input class="form-range" type="range" step="1" name="rooms" id="rooms" v-model="rooms" min="1"
-                            max="5">
+                            max="5" @change.stop="searchApartment()">
                         <p class="text-center">{{ rooms }}</p>
                     </div>
                     <div class="pb-3">
                         <label class="form-label d-block fs-5 fw-bold" for="bath">Bagni</label>
                         <input class="form-range" type="range" step="1" name="bath" id="bath" v-model="bath" min="1"
-                            max="5">
+                            max="5" @change.stop="searchApartment()">
                         <p class="text-center">{{ bath }}</p>
                     </div>
                     <div class="pb-3">
                         <label class="form-label d-block fs-5 fw-bold" for="beds">Letti</label>
                         <input class="form-range" type="range" step="1" name="beds" id="beds" v-model="beds" min="1"
-                            max="5">
+                            max="5" @change.stop="searchApartment()">
                         <p class="text-center">{{ beds }}</p>
                     </div>
                     <div>
                         <label for="price" class="form-label d-block fs-5 fw-bold">Prezzo</label>
                         <input class="form-range text-dark" type="range" step="20" name="price" id="price" v-model="price"
-                            min="20" max="1000">
+                            min="20" max="1000" @change.stop="searchApartment()">
                         <p class="text-center">{{ price }} €</p>
                     </div>
                     <!-- Fine sezione filtri aggiuntivi -->
@@ -132,7 +131,8 @@ export default {
 
         <!-- Card degli appartamenti -->
         <div class="row row-cols-1  row-cols-md-2 row-cols-lg-3 mt-4 px-3 ">
-            <CardList v-for="apartment in data" :apartment="apartment"></CardList>
+            <CardList v-if="apartments" v-for="apartment in apartments" :apartment="apartment" />
+            <CardList v-else v-for="apartment in data" :apartment="apartment" />
         </div>
         <!-- Fine card degli appartamenti -->
     </div>
@@ -158,15 +158,15 @@ export default {
                             <div class="fs-5 fw-bold" for="dist">Distanza</div>
                             <div class="row row-cols-3 align-items-center">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <input checked class="form-check-input" type="radio" name="dist" id="dist" value="20">
+                                    <input checked class="form-check-input" type="radio" name="dist" id="dist" :value="20" @change.stop="searchApartment()" v-model="dist">
                                     <label class="form-check-label" for="dist">20km</label>
                                 </div>
                                 <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <input class="form-check-input" type="radio" name="dist" id="dist" value="40">
+                                    <input class="form-check-input" type="radio" name="dist" id="dist" :value="40" @change.stop="searchApartment()" v-model="dist">
                                     <label class="form-check-label" for="dist">40km</label>
                                 </div>
                                 <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <input class="form-check-input" type="radio" name="dist" id="dist" value="60">
+                                    <input class="form-check-input" type="radio" name="dist" id="dist" :value="60" @change.stop="searchApartment()" v-model="dist">
                                     <label class="form-check-label" for="dist">60km</label>
                                 </div>
                             </div>
@@ -177,25 +177,25 @@ export default {
                         <div class="pb-3">
                             <label class="form-label d-block fs-5 fw-bold" for="rooms">Stanze</label>
                             <input class="form-range" type="range" step="1" name="rooms" id="rooms" v-model="rooms" min="1"
-                                max="5">
+                                max="5" @input.stop="searchApartment()">
                             <p class="text-center">{{ rooms }}</p>
                         </div>
                         <div class="pb-3">
                             <label class="form-label d-block fs-5 fw-bold" for="bath">Bagni</label>
                             <input class="form-range" type="range" step="1" name="bath" id="bath" v-model="bath" min="1"
-                                max="5">
+                                max="5" @input.stop="searchApartment()">
                             <p class="text-center">{{ bath }}</p>
                         </div>
                         <div class="pb-3">
                             <label class="form-label d-block fs-5 fw-bold" for="beds">Letti</label>
                             <input class="form-range" type="range" step="1" name="beds" id="beds" v-model="beds" min="1"
-                                max="5">
+                                max="5" @input.stop="searchApartment()">
                             <p class="text-center">{{ beds }}</p>
                         </div>
                         <div>
                             <label for="price" class="form-label d-block fs-5 fw-bold">Prezzo</label>
                             <input class="form-range text-dark" type="range" step="20" name="price" id="price"
-                                v-model="price" min="20" max="1000">
+                                v-model="price" min="20" max="1000" @input.stop="searchApartment()">
                             <p class="text-center">{{ price }} €</p>
                         </div>
                         <!-- Fine filti aggiuntivi -->
@@ -211,7 +211,7 @@ export default {
             <ul class="list-unstyled d-flex justify-content-between align-items-center me-0 mb-0 col-auto" v-if="services">
 
                 <!-- Pulsante indietro -->
-                <li role="button" class="me-3" @click="prev()"><i class="fa-solid fa-chevron-left"></i></li>
+                <li role="button" class="me-3" :class="[start<=0?'d-none':'']" @click="prev()"><i class="fa-solid fa-chevron-left"></i></li>
 
                 <li v-for="(service, index) in services.slice(this.start, this.finish)" class="mx-3">
                     <input type="checkbox" class="btn-check" :id="service.name" @change.stop="searchApartment()"
@@ -224,10 +224,11 @@ export default {
                 </li>
 
                 <!-- Pulsante avanti  -->
-                <li role="button" class="ms-3" @click="next()"><i class="fa-solid fa-chevron-right"></i></li>
+                <li role="button" class="ms-3" :class="[finish>=services.length-1?'d-none':'']" @click="next()"><i class="fa-solid fa-chevron-right"></i></li>
             </ul>
             <div class="row row-cols-1 row-cols-lg-3 mt-2">
-                <CardList v-for="apartment in data" :apartment="apartment"></CardList>
+                <CardList v-if="apartments" v-for="apartment in apartments" :apartment="apartment" />
+                <CardList v-else v-for="apartment in data" :apartment="apartment" />
             </div>
 
         </div>

@@ -8,23 +8,33 @@ export const useSearchStore = defineStore("search", {
       apartments: null,
       lat: null,
       lon: null,
-      dist: 20,
+      dist: 0,
       services: null,
       clicked: [],
+      start: 0,
+      finish: 9,
+      price: 20,
+      rooms: 1,
+      beds: 1,
+      bath: 1
     };
   },
   actions: {
       searchApartment() {
-        console.log(this.clicked);
+        this.apartments=null;
       axios
         .post(this.api, {
             lat:this.lat,
             lon:this.lon,
             dist:this.dist,
-            service:this.clicked
+            service:this.clicked,
+            price:this.price,
+            rooms:this.rooms,
+            bath:this.bath,
         })
         .then((response) => {
           this.apartments = response.data.results;
+          console.log(this.apartments);
         })
         .catch((error) => {
           console.log(error);
