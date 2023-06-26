@@ -13,21 +13,6 @@ export default {
     SearchApp,
     FilterApp
   },
-  methods: {
-    ...mapActions(useApiStore, ["getData"]),
-    ...mapActions(useSearchStore, ["getServices"]),
-    ...mapActions(useSearchStore, ["searchApartment"]),
-    ...mapActions(useSearchStore, ["filteredServices"]),
-  },
-  computed: {
-    ...mapState(useApiStore, ["data"]),
-    ...mapState(useSearchStore, ["apartments"]),
-
-  },
-  created() {
-    this.getData();
-    this.getServices();
-  }
 };
 </script>
 
@@ -46,28 +31,5 @@ export default {
 main {
   margin-top: 100px;
   height: calc(100vh - 150px);
-}
-
-nav {
-  padding-top: 3.125rem;
-}
-
-.hover-green {
-  font-size: 13px;
-}
-
-#service:hover {
-  color: $link;
-  cursor: pointer;
-  text-decoration: 2px underline $link;
-}
-
-.active {
-  color: $link;
-  text-decoration: 2px underline $link;
-}
-
-.offcanvas-bottom {
-  height: 60% !important;
 }
 </style>

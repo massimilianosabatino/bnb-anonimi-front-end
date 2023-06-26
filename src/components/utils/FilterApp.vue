@@ -19,7 +19,7 @@ export default {
         ...mapState(useApiStore, ["data"]),
         ...mapActions(useApiStore, ["getData"]),
         ...mapActions(useSearchStore, ["getServices"]),
-        ...mapActions(useSearchStore, ["chePalle"]),
+        ...mapActions(useSearchStore, ['searchApartment']),
         next() {
             if (this.finish < this.services.length - 1) {
                 this.start += 9;
@@ -37,14 +37,9 @@ export default {
         ...mapState(useSearchStore, ["services"]),
         ...mapWritableState(useSearchStore, ["clicked"]),
     },
-    created() {
-        this.getData();
+    created(){
         this.getServices();
-    },
-    mounted(){
-        this.chePalle();
     }
-
 }
 </script>
 <template>
@@ -161,7 +156,7 @@ export default {
                 </div>
             </div>
         </div>
-        <ul class="list-unstyled d-flex justify-content-between align-items-center me-0 mb-0 col-auto">
+        <ul class="list-unstyled d-flex justify-content-between align-items-center me-0 mb-0 col-auto" v-if="services">
 
             <!-- Pulsante indietro -->
             <li role="button" class="me-3" @click="prev()"><i class="fa-solid fa-chevron-left"></i></li>

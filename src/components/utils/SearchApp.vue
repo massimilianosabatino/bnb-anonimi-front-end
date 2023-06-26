@@ -28,9 +28,6 @@ export default {
   <!--/Search-->
 </template>
 <style lang="scss" scoped>
-#search{
-  padding-top: 3.125rem;
-}
   #address{
     width: 75%;
     background-color: transparent;

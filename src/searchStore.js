@@ -50,15 +50,16 @@ export const useSearchStore = defineStore("search", {
         },
       };
       let input = document.getElementById("address");
-      console.log(input);
+
       // var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
       var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
       var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
       let searchbar = document.getElementsByClassName("tt-search-box-input");
       let search = document.getElementsByClassName('tt-search-box');
       let boxInput = document.getElementsByClassName('tt-search-box-input-container');
-      
+
       input.append(searchBoxHTML);
+      
       ttSearchBox.on("tomtom.searchbox.resultselected", (data) => {
         this.lat = data.data.result.position.lat;
         this.lon = data.data.result.position.lng;
