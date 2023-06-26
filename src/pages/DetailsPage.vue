@@ -3,13 +3,14 @@ import axios from "axios";
 import { useApiStore } from "../apiStore";
 import { useSearchStore } from "../searchStore";
 import { useDetailStore } from "../detailStore";
-import { mapState, mapActions,mapWritableState } from "pinia";
+import { mapState, mapActions, mapWritableState } from "pinia";
 
 export default {
   name: "DetailsPage",
   methods: {
     ...mapActions(useApiStore, ["getData"]),
-    ...mapActions(useDetailStore, ['detailApart'])
+    ...mapActions(useDetailStore, ['detailApart']),
+    ...mapActions(useDetailStore, ['apartmentMap']),
   },
   computed: {
     ...mapState(useApiStore, ["data"]),
@@ -20,17 +21,40 @@ export default {
     this.getData();
     this.detailApart();
   },
+  mounted() {
+    this.apartmentMap();
+  }
 
 };
 </script>
 
 <template>
-  <div class="container h-100">
+  <div class="container">
     <!--Intestazione Appartemento-->
-    <div class="container container-head pt-4" v-if="detail">
-      <h1>{{ detail.title }}</h1>
-      <p>{{ detail.square_meters}} &#x33A1;</p>
-      <p>{{ detail.address}}</p>
+    <div class="p-4 row row-cols-2 justify-content-between aling-items-center" v-if="detail">
+      <div>
+        <h1>{{ detail.title }}</h1>
+      </div>
+      <div class="d-flex align-items-center gap-5 justify-content-end">
+        <p class="mb-0 badge">{{ detail.square_meters }} &#x33A1;</p>
+        <button type="button" class="badge" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          {{ detail.address }}
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content w-100">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Dove alloggerai</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- <div id="modalMap"></div>  -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <!--/Intestazione Appartemento-->
 
@@ -42,15 +66,15 @@ export default {
       </div>
       <div class="d-flex justify-content-between align-items-center my-5">
         <div>
-          <ul class="d-flex list-unstyled align-items-center">
-            <li>{{ detail.rooms }} Stanze - {{ detail.bathrooms }} Bagni - {{detail.beds  }} Letti</li>
+          <ul class="d-flex list-unstyled align-items-center mb-0">
+            <li>{{ detail.rooms }} Stanze - {{ detail.bathrooms }} Bagni - {{ detail.beds }} Letti</li>
           </ul>
         </div>
         <div class="d-flex align-items-center">
-          <p class="me-5 mb-0 fs-5 ">Il proprietario è <strong>{{ detail.user.name}}</strong></p>
+          <p class="me-5 mb-0 fs-5 ">Il proprietario è <strong>{{ detail.user.name }}</strong></p>
           <div class="card px-1">
             <div class="card-body">
-              <p class="card-text"><strong>{{ detail.price}}€</strong>/persona</p>
+              <p class="card-text"><strong>{{ detail.price }}€</strong>/persona</p>
             </div>
           </div>
         </div>
@@ -59,39 +83,46 @@ export default {
     <!--/Contenuto(Immagini e info)-->
 
     <!--Servizi-->
-    <div class="container d-none d-lg-block">
-      <h5>Servizi inclusi</h5>
-      <div id="desktop-services" class="row p-3">
-        <ul class="list-unstyled col d-flex flex-column flex-wrap h-100">
-          <li class="d-flex align-items-center" v-for="service in detail.services">
+    <div class="row p-3">
+      <div class="col-12 col-lg-4 border-end">
+        <h5 class="pb-5">Servizi inclusi</h5>
+        <ul class="list-unstyled d-flex flex-column flex-wrap">
+          <li class="d-flex align-items-center" v-for="(service, index) in detail.services"
+            :class="[index >= 5 ? 'd-none' : '']">
             <p v-html="service.icon"></p>
             <p class="ms-2">{{ service.name }}</p>
           </li>
         </ul>
-      </div>
-    </div>
-    <!--/Servizi-->
-    <!--Servizi Mobile-->
-    <div class="container d-lg-none mb-4">
-      <button class="btn primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-        aria-controls="offcanvasExample">Servizi Inclusi</button>
-      <div class="offcanvas offcanvas-bottom rounded-2 h-50" tabindex="-1" id="offcanvasExample"
-        aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Servizi Inclusi </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <div>
-            <ul class="list-unstyled row row-cols-1 row-cols-sm-2">
-              <li class="d-flex gap-2 align-items-center" v-for="service in detail.services">
-                <p v-html="service.icon"></p>
-                <p class="ms-2">{{ service.name }}</p>
-              </li>
-            </ul>
+        <button class="btn primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+          aria-controls="offcanvasExample">Mostra tutti</button>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+          aria-labelledby="offcanvasExampleLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Servizi Inclusi</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <div>
+              <ul class="list-unstyled">
+                <li class="d-flex gap-2 align-items-center" v-for="service in detail.services">
+                  <p v-html="service.icon"></p>
+                  <p class="ms-2">{{ service.name }}</p>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
+
+
       </div>
+
+      <div class="col-12 col-lg-8 px-md-4 mt-5 mt-lg-0">
+        <h5 class="">Dove Alloggerai</h5>
+        <div class="badge">{{ detail.address }}</div>
+        <div id="map"></div>
+      </div>
+      <!--/Servizi-->
+
     </div>
     <!--/Servizi Mobile-->
   </div>
@@ -100,15 +131,23 @@ export default {
 <style scoped lang="scss">
 @use '../assets/scss/_partial/variables' as *;
 
-// .container{
-//   margin-top: 6.25rem;
-// }
-.primary{
-background-color: $primary;
-color: white;
-}
-#desktop-services {
-  height: 300px;
+.primary {
+  background-color: $primary;
+  color: white;
 }
 
+.badge {
+  color: $link;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid lightgray;
+  background-color: transparent;
+}
+
+
+#map {
+  height: 25rem;
+  border-radius: 20px;
+  margin: 20px 0;
+}
 </style>
