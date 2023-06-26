@@ -55,7 +55,7 @@ header {
     // left: 0;
     // top: 0;
     // z-index: 1;
-    color: black;
+    // color: black;
     font-size: 1.25rem;
     font-weight: bold;
     background-color: white;

@@ -8,23 +8,33 @@ export const useSearchStore = defineStore("search", {
       apartments: null,
       lat: null,
       lon: null,
-      dist: 20,
+      dist: 0,
       services: null,
       clicked: [],
+      start: 0,
+      finish: 9,
+      price: 20,
+      rooms: 1,
+      beds: 1,
+      bath: 1
     };
   },
   actions: {
       searchApartment() {
-        console.log(this.clicked);
+        this.apartments=null;
       axios
         .post(this.api, {
             lat:this.lat,
             lon:this.lon,
             dist:this.dist,
-            service:this.clicked
+            service:this.clicked,
+            price:this.price,
+            rooms:this.rooms,
+            bath:this.bath,
         })
         .then((response) => {
           this.apartments = response.data.results;
+          console.log(this.apartments);
         })
         .catch((error) => {
           console.log(error);
@@ -35,7 +45,6 @@ export const useSearchStore = defineStore("search", {
       axios.get('http://127.0.0.1:8000/api/services')
       .then((respsonse) => {
         this.services = respsonse.data.results;
-        console.log(this.services);
       })
     },
     chePalle() {
@@ -58,9 +67,9 @@ export const useSearchStore = defineStore("search", {
       let searchbar = document.getElementsByClassName("tt-search-box-input");
       let search = document.getElementsByClassName('tt-search-box');
       let boxInput = document.getElementsByClassName('tt-search-box-input-container');
-      console.log(search);
-      
+
       input.append(searchBoxHTML);
+      
       ttSearchBox.on("tomtom.searchbox.resultselected", (data) => {
         this.lat = data.data.result.position.lat;
         this.lon = data.data.result.position.lng;
@@ -70,14 +79,8 @@ export const useSearchStore = defineStore("search", {
       })
       search.forEach(element => {
         element.classList.add('mt-0');
-        console.log(search);
       });
     },
-    // filteredServices(){
-    //   console.log(this.apartments);
-    //   this.apartments.forEach(apartment => {
-    //     let services = apartment.services;
-    //   });
-    // }
+  
   },
 });
