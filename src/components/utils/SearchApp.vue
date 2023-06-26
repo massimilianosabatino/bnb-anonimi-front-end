@@ -22,7 +22,6 @@ export default {
 </script>
 <template>
   <!--Search-->
-    <div class="container">
       <div id="search">
         <form @submit.prevent="searchApartment" class="d-flex justify-content-center gap-3" role="search">
           <!-- <input class="form-control me-2" type="search" placeholder="Cerca un indirizzo" aria-label="Search" v-model="searchKey" /> -->
@@ -30,12 +29,11 @@ export default {
           <button class="btn btn-sm btn-success" type="submit">Cerca</button>
         </form>
       </div>
-    </div>
   <!--/Search-->
 </template>
 <style lang="scss" scoped>
 #search{
-  padding-top: 100px;
+  padding-top: 3.125rem;
 }
   #address{
     width: 75%;

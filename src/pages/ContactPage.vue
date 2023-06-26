@@ -41,4 +41,12 @@ export default {
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+    margin-top: 100px;
+    height: calc(100vh - 150px);
+    .row{
+        padding-top: 12.5rem;
+    }
+}
+</style>
