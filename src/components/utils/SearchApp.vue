@@ -10,10 +10,7 @@ export default {
   },
   methods: {
     ...mapActions(useSearchStore, ["searchApartment"]),
-    ...mapActions(useSearchStore,["chePalle"])
-  },
-  computed: {
-    ...mapState(useSearchStore, ["apartments"]),
+    ...mapActions(useSearchStore,["chePalle"]),
   },
   mounted(){
     this.chePalle();
@@ -24,7 +21,6 @@ export default {
   <!--Search-->
       <div id="search">
         <form @submit.prevent="searchApartment" class="d-flex justify-content-center gap-3" role="search">
-          <!-- <input class="form-control me-2" type="search" placeholder="Cerca un indirizzo" aria-label="Search" v-model="searchKey" /> -->
           <div id="address"></div>
           <button class="btn btn-sm btn-success" type="submit">Cerca</button>
         </form>

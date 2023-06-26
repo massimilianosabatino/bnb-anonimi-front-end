@@ -35,7 +35,6 @@ export const useSearchStore = defineStore("search", {
       axios.get('http://127.0.0.1:8000/api/services')
       .then((respsonse) => {
         this.services = respsonse.data.results;
-        console.log(this.services);
       })
     },
     chePalle() {
@@ -51,14 +50,13 @@ export const useSearchStore = defineStore("search", {
         },
       };
       let input = document.getElementById("address");
-
+      console.log(input);
       // var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
       var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
       var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
       let searchbar = document.getElementsByClassName("tt-search-box-input");
       let search = document.getElementsByClassName('tt-search-box');
       let boxInput = document.getElementsByClassName('tt-search-box-input-container');
-      console.log(search);
       
       input.append(searchBoxHTML);
       ttSearchBox.on("tomtom.searchbox.resultselected", (data) => {
@@ -70,14 +68,8 @@ export const useSearchStore = defineStore("search", {
       })
       search.forEach(element => {
         element.classList.add('mt-0');
-        console.log(search);
       });
     },
-    // filteredServices(){
-    //   console.log(this.apartments);
-    //   this.apartments.forEach(apartment => {
-    //     let services = apartment.services;
-    //   });
-    // }
+  
   },
 });
