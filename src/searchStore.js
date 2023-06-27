@@ -13,7 +13,7 @@ export const useSearchStore = defineStore("search", {
       clicked: [],
       start: 0,
       finish: 9,
-      price: 20,
+      price: 1000,
       rooms: 1,
       beds: 1,
       bath: 1
