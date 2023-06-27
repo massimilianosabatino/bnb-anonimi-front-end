@@ -5,7 +5,7 @@ import SearchApp from '../components/utils/SearchApp.vue';
 import 'vue3-carousel/dist/carousel.css';
 
 import { useApiStore } from '../apiStore';
-import { mapState,mapActions } from 'pinia';
+import { mapState, mapActions } from 'pinia';
 
 export default defineComponent({
     name: 'Autoplay',
@@ -15,13 +15,13 @@ export default defineComponent({
         Navigation,
         SearchApp,
     },
-    methods:{
+    methods: {
         ...mapActions(useApiStore, ['getData']),
     },
     computed: {
-    ...mapState(useApiStore, ["data"]),
+        ...mapState(useApiStore, ["data"]),
     },
-    created(){
+    created() {
         this.getData();
     }
 })
@@ -75,7 +75,8 @@ export default defineComponent({
     margin-top: 9.375rem;
     width: 100%;
 }
-#carousel-mobile{
+
+#carousel-mobile {
     width: 100%;
     margin-top: 4.6875rem;
 }
@@ -101,6 +102,7 @@ export default defineComponent({
     box-sizing: content-box;
     border: 5px solid white;
 }
+
 .carousel__slide {
     padding: 5px;
 }

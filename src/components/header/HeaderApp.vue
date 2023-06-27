@@ -20,7 +20,6 @@ export default {
                     class="list-unstyled d-flex justify-content-center align-items-center gap-2 gap-lg-5 m-0 d-none d-sm-flex">
                     <li><router-link :to="{ name: 'Home' }">Home</router-link></li>
                     <li><router-link :to="{ name: 'Search' }">Appartamenti</router-link></li>
-                    <li><router-link :to="{ name: 'Contact' }">Contatti</router-link></li>
                 </ul>
                 <div class="dropdown">
                     <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
@@ -31,7 +30,6 @@ export default {
                     <ul class="dropdown-menu p-2">
                         <li><router-link class="py-3 d-block d-sm-none" :to="{ name: 'Home' }">Home</router-link></li>
                         <li><router-link class="py-3 d-block d-sm-none" :to="{ name: 'Search' }">Appartamenti</router-link></li>
-                        <li><router-link class="py-3 d-block d-sm-none border-bottom" :to="{ name: 'Contact' }">Contatti</router-link></li>
                         <li><a class="py-3 d-block" href="#">Accedi/Registrati</a></li>
                     </ul>
                 </div>
