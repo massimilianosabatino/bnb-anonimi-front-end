@@ -15,6 +15,8 @@ export const useDetailStore = defineStore('detail', {
             axios.get(`${this.api}${router.currentRoute.value.params.id}`)
                 .then((response) => {
                     this.detail = response.data.results;
+                }).then(() =>{
+                    this.apartmentMap();
                 })
         },
         apartmentMap() {

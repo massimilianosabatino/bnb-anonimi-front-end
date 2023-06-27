@@ -8,22 +8,16 @@ import { mapState, mapActions, mapWritableState } from "pinia";
 export default {
   name: "DetailsPage",
   methods: {
-    ...mapActions(useApiStore, ["getData"]),
     ...mapActions(useDetailStore, ['detailApart']),
     ...mapActions(useDetailStore, ['apartmentMap']),
   },
   computed: {
-    ...mapState(useApiStore, ["data"]),
     ...mapState(useSearchStore, ["services"]),
     ...mapWritableState(useDetailStore, ['detail']),
   },
   created() {
-    this.getData();
     this.detailApart();
   },
-  mounted() {
-    this.apartmentMap();
-  }
 
 };
 </script>
