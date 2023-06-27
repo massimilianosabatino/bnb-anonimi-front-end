@@ -12,10 +12,10 @@ export default {
                     <li> &copy; BnB Anonimi,Inc</li>
                 </ul>
                 <div class="text-end col-4">
-                    <a class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
+                    <a class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#footer"
                         aria-controls="offcanvasBottom">Info</a>
 
-                    <div class="offcanvas offcanvas-bottom rounded-2" tabindex="-1" id="offcanvasBottom"
+                    <div class="offcanvas offcanvas-bottom rounded-2" tabindex="-1" id="footer"
                         aria-labelledby="offcanvasBottomLabel">
                         <div class="offcanvas-header">
                             <a type="button" class="" data-bs-dismiss="offcanvas" aria-label="Close"><i

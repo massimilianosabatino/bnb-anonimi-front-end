@@ -49,11 +49,11 @@ export default {
     <!-- Filtri formato mobile -->
     <div class="d-lg-none py-5">
         <!-- Pulsante offcanvas bottom -->
-        <button class="btn border border-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
+        <button class="btn border border-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#ricerca"
             aria-controls="offcanvasBottom">Filtri</button>
 
         <!-- Offcanvas bottom -->
-        <div class="offcanvas offcanvas-bottom rounded-2" tabindex="-1" id="offcanvasBottom"
+        <div class="offcanvas offcanvas-bottom rounded-2" tabindex="-1" id="ricerca"
             aria-labelledby="offcanvasBottomLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasBottomLabel">Applica Filtri di ricerca</h5>
