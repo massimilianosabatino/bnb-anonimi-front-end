@@ -72,8 +72,9 @@ export default {
   
 <style scoped lang="scss">
 main {
-    height: 100vh;
+    // height: 100vh;
     // overflow-y: scroll;
+    margin-bottom: 60px;
 }
 .carte {
     // justify-content: space-between;
