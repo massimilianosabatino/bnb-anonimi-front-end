@@ -51,7 +51,7 @@ export default {
           <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
               class="fa-solid fa-envelope"></i></a>
 
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+          <div class="offcanvas offcanvas-end rounded-2" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
               <h3 class="offcanvas-title">Contatta il proprietario</h3>
               <a type="button" data-bs-dismiss="offcanvas" aria-label="Close"><i
