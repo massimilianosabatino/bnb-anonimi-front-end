@@ -31,14 +31,14 @@ export default {
 <template>
   <div class="container">
     <!--Intestazione Appartemento-->
-    <div class="p-4 row row-cols-1 row-cols-lg-2 justify-content-between aling-items-center" v-if="detail">
-      <div>
+    <div class="p-3 p-lg-4 row row-cols-1 row-cols-lg-2 justify-content-center" v-if="detail">
+      <div class="p-0">
         <h1>{{ detail.title }}</h1>
       </div>
-      <div class="row row-cols-lg-3 row-cols-1 align-items-center gap-3 justify-content-end">
-        <p class="mb-0 badge">{{ detail.square_meters }} &#x33A1;</p>
-        <button type="button" class="badge" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          {{ detail.address }}
+      <div class="row align-items-center p-0">
+        <p class="mb-0 badge col-12 col-lg-2 me-3 mb-3 mb-lg-0 ">{{ detail.square_meters }} &#x33A1;</p>
+        <button type="button" class="badge col-12 col-lg-7 me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          {{ detail.address.substring(0,25,'...') }}
         </button>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
@@ -53,6 +53,53 @@ export default {
             </div>
           </div>
         </div>
+        <div class="fs-3 col-12 col-lg-2 text-end order-first order-lg-last mb-3 mb-lg-0" id="message">
+          <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
+              class="fa-solid fa-envelope"></i></a>
+
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+              <h3 class="offcanvas-title">Contatta il proprietario</h3>
+              <a type="button" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                  class="fa-solid fa-xmark"></i></a>
+            </div>
+            <div class="offcanvas-body">
+              <div class="row">
+                <div class="col-12">
+                  <form action="" method="post">
+                    <div class="mb-3 text-start">
+                      <label for="name" class="form-label">Nome</label>
+                      <div class="input-group">
+                        <span class="input-group-text">
+                          <font-awesome-icon icon="fa-solid fa-user" />
+                        </span>
+                        <input type="text" name="name" id="name" class="form-control form-control-sm"
+                          placeholder="Inserisci il tuo nome" autofocus>
+                      </div>
+                    </div>
+                    <div class="mb-3 text-start">
+                      <label for="email" class="form-label">Email</label>
+                      <div class="input-group">
+                        <span class="input-group-text">
+                          <font-awesome-icon icon="fa-solid fa-envelope" />
+                        </span>
+                        <input type="email" name="email" id="email" class="form-control form-control-sm"
+                          placeholder="Inserisci la tua email">
+                      </div>
+                    </div>
+                    <div class="mb-3 text-start">
+                      <label for="message" class="form-label">Messaggio</label>
+                      <textarea name="message" id="message" rows="5" class="form-control form-control-sm"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Invia</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
     </div>
@@ -64,9 +111,9 @@ export default {
         <img class="rounded-3 img-fluid" :src="detail.cover_image" :alt="detail.title" />
         <!--In caso aggiungere Gallery-->
       </div>
-      <div class="row row-cols-1 row-cols-md-2 justify-content-center align-items-center my-5">
+      <div class="row row-cols-1 row-cols-md-2 justify-content-center align-items-center mt-5 mb-3 px-2">
         <div>
-          <ul class="row row-cols-1 row-cols-md-2 list-unstyled align-items-center mb-0">
+          <ul class="row row-cols-1 row-cols-md-2 list-unstyled align-items-center mb-0 text-center">
             <li>{{ detail.rooms }} Stanze - {{ detail.bathrooms }} Bagni - {{ detail.beds }} Letti</li>
           </ul>
         </div>
@@ -99,7 +146,8 @@ export default {
           aria-labelledby="offcanvasExampleLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasExampleLabel">Servizi Inclusi</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <a type="button" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                  class="fa-solid fa-xmark"></i></a>
           </div>
           <div class="offcanvas-body">
             <div>
@@ -150,4 +198,9 @@ export default {
   border-radius: 20px;
   margin: 20px 0;
 }
+
+.fa-xmark{
+  color: red;
+}
+
 </style>

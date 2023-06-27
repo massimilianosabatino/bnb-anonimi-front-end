@@ -2,7 +2,6 @@ import { createWebHistory, createRouter } from "vue-router";
 
 import HomePage from "./pages/HomePage.vue";
 import SearchPage from "./pages/SearchPage.vue";
-import ContactPage from "./pages/ContactPage.vue";
 import DetailsPage from "./pages/DetailsPage.vue";
 import AboutUs from "./pages/AboutUs.vue";
 const router = createRouter({
@@ -17,11 +16,6 @@ const router = createRouter({
       path:"/search",
       name: 'Search',
       component: SearchPage,
-    },
-    {
-      path: '/contact',
-      name: 'Contact',
-      component: ContactPage,
     },
     {
       path: '/apartment/:id/:slug',
