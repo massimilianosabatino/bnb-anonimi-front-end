@@ -36,9 +36,9 @@ export default {
         <h1>{{ detail.title }}</h1>
       </div>
       <div class="row align-items-center p-0">
-        <p class="mb-0 badge col-12 col-lg-2 me-3 mb-3 mb-lg-0 ">{{ detail.square_meters }} &#x33A1;</p>
-        <button type="button" class="badge col-12 col-lg-7 me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          {{ detail.address.substring(0,25,'...') }}
+        <p class="mb-0 badge col-12 col-lg-2 me-2 mb-3 mb-lg-0 ">{{ detail.square_meters }} &#x33A1;</p>
+        <button type="button" class="badge col-12 col-lg-7 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          {{ detail.address.substring(0,25) }}
         </button>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
@@ -121,7 +121,7 @@ export default {
           <p class="mb-0 fs-5 text-md-end">Il proprietario è <strong>{{ detail.user.name }}</strong></p>
           <div class="card px-1">
             <div class="card-body">
-              <p class="card-text"><strong>{{ detail.price }}€</strong>/persona</p>
+              <p class="card-text text-center"><strong>{{ detail.price }}€</strong>/persona</p>
             </div>
           </div>
         </div>
@@ -166,7 +166,7 @@ export default {
 
       <div class="col-12 col-lg-8 px-md-4 mt-5 mt-lg-0">
         <h5 class="">Dove Alloggerai</h5>
-        <div class="badge">{{ detail.address }}</div>
+        <div class="badge">{{ detail.address.substring(0,25) }}</div>
         <div id="map"></div>
       </div>
       <!--/Servizi-->
