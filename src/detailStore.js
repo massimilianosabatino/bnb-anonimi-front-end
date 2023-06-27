@@ -14,7 +14,6 @@ export const useDetailStore = defineStore('detail', {
         detailApart() {
             axios.get(`${this.api}${router.currentRoute.value.params.id}`)
                 .then((response) => {
-                    console.log(response);
                     this.detail = response.data.results;
                 })
         }
