@@ -51,7 +51,7 @@ export default {
             <h1>About Us:</h1>
         </div>
         <div class="container d-flex justify-content-center">
-            <div class="row  carte">
+            <div class="row  carte align-items-stretch">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xxl-2 my-2" v-for="(developer, index) in developers" :key="developer.id">
                     <div class="card h-100">
                         <img :src="developer.image" class="card-img-top immagine img-fluid" alt="Developer Image">
