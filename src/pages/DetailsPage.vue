@@ -31,11 +31,11 @@ export default {
 <template>
   <div class="container">
     <!--Intestazione Appartemento-->
-    <div class="p-4 row row-cols-2 justify-content-between aling-items-center" v-if="detail">
+    <div class="p-4 row row-cols-1 row-cols-lg-2 justify-content-between aling-items-center" v-if="detail">
       <div>
         <h1>{{ detail.title }}</h1>
       </div>
-      <div class="d-flex align-items-center gap-5 justify-content-end">
+      <div class="row row-cols-lg-3 row-cols-1 align-items-center gap-3 justify-content-end">
         <p class="mb-0 badge">{{ detail.square_meters }} &#x33A1;</p>
         <button type="button" class="badge" data-bs-toggle="modal" data-bs-target="#exampleModal">
           {{ detail.address }}
@@ -59,19 +59,19 @@ export default {
     <!--/Intestazione Appartemento-->
 
     <!--Contenuto(Immagini e info)-->
-    <div class="container mb-0">
+    <div class="">
       <div>
         <img class="rounded-3 img-fluid" :src="detail.cover_image" :alt="detail.title" />
         <!--In caso aggiungere Gallery-->
       </div>
-      <div class="d-flex justify-content-between align-items-center my-5">
+      <div class="row row-cols-1 row-cols-md-2 justify-content-center align-items-center my-5">
         <div>
-          <ul class="d-flex list-unstyled align-items-center mb-0">
+          <ul class="row row-cols-1 row-cols-md-2 list-unstyled align-items-center mb-0">
             <li>{{ detail.rooms }} Stanze - {{ detail.bathrooms }} Bagni - {{ detail.beds }} Letti</li>
           </ul>
         </div>
-        <div class="d-flex align-items-center">
-          <p class="me-5 mb-0 fs-5 ">Il proprietario è <strong>{{ detail.user.name }}</strong></p>
+        <div class="row row-cols-1 row-cols-md-2 align-items-center my-3 my-md-0">
+          <p class="mb-0 fs-5 text-md-end">Il proprietario è <strong>{{ detail.user.name }}</strong></p>
           <div class="card px-1">
             <div class="card-body">
               <p class="card-text"><strong>{{ detail.price }}€</strong>/persona</p>
