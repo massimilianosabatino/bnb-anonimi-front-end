@@ -3,13 +3,16 @@ import axios from "axios";
 import { useApiStore } from "../apiStore";
 import { useSearchStore } from "../searchStore";
 import { useDetailStore } from "../detailStore";
-import { mapState, mapActions, mapWritableState } from "pinia";
+import { useViewStore } from '../viewStore';
+import { mapState, mapActions,mapWritableState } from "pinia";
+
 
 export default {
   name: "DetailsPage",
   methods: {
+    ...mapActions(useApiStore, ["getData"]),
     ...mapActions(useDetailStore, ['detailApart']),
-    ...mapActions(useDetailStore, ['apartmentMap']),
+    ...mapActions(useViewStore,['countView']),
   },
   computed: {
     ...mapState(useSearchStore, ["services"]),
@@ -17,6 +20,7 @@ export default {
   },
   created() {
     this.detailApart();
+    this.countView();
   },
 
 };

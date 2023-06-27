@@ -69,15 +69,15 @@ export default {
                         <div class="fs-5 fw-bold" for="dist">Distanza</div>
                         <div class="row row-cols-3 align-items-center">
                             <div class="d-flex flex-column justify-content-center align-items-center">
-                                <input checked class="form-check-input" type="radio" name="dist" id="dist" value="20">
+                                <input checked="" class="form-check-input" type="radio" name="dist" id="dist" :value="20" @change.stop="searchApartment()" v-model="dist">
                                 <label class="form-check-label" for="dist">20km</label>
                             </div>
                             <div class="d-flex flex-column justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="dist" id="dist" value="40">
+                                <input class="form-check-input" type="radio" name="dist" id="dist" :value="40" @change.stop="searchApartment()" v-model="dist">
                                 <label class="form-check-label" for="dist">40km</label>
                             </div>
                             <div class="d-flex flex-column justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="dist" id="dist" value="60">
+                                <input class="form-check-input" type="radio" name="dist" id="dist" :value="60" @change.stop="searchApartment()" v-model="dist">
                                 <label class="form-check-label" for="dist">60km</label>
                             </div>
                         </div>
@@ -198,7 +198,7 @@ export default {
                                 v-model="price" min="20" max="1000" @input.stop="searchApartment()">
                             <p class="text-center">{{ price }} €</p>
                         </div>
-                        <!-- Fine filti aggiuntivi -->
+                        <!-- Fine filtri aggiuntivi -->
                     </div>
                 </div>
                 <!-- Fine contenuto accordion -->
@@ -252,12 +252,10 @@ nav {
 #service:hover {
     color: $link;
     cursor: pointer;
-    text-decoration: 2px underline $link;
 }
 
 .active {
     color: $link;
-    text-decoration: 2px underline $link;
 }
 
 .offcanvas-bottom {
