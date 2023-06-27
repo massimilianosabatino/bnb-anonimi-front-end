@@ -73,23 +73,26 @@ export default {
 <style scoped lang="scss">
 main {
     height: 100vh;
+    // overflow-y: scroll;
 }
 .carte {
-    justify-content: space-between;
+    // justify-content: space-between;
+    justify-content: flex-start;
 }
 
+@media (min-width: 1400px) {
+  .carte {
+    justify-content: space-between;
+  }
+}
 .link-no-underline {
   text-decoration: none;
 }
-
 .immagine {
     max-height: 200px;
     // width: 100%;
     object-fit: contain;
 }
-
-
-
 </style>
   
   
