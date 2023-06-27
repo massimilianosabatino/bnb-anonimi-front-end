@@ -41,7 +41,7 @@ export default {
     },
     created() {
         this.getServices();
-        this.getData()
+        this.searchApartment();
     },
 }
 </script>
@@ -68,19 +68,19 @@ export default {
                         <div class="fs-5 fw-bold" for="dist">Distanza</div>
                         <div class="row row-cols-3 align-items-center">
                             <div class="d-flex flex-column justify-content-center align-items-center">
-                                <input checked="" class="form-check-input" type="radio" name="dist" id="dist" :value="20"
+                                <input checked class="form-check-input" type="radio" name="mobileDist" id="mobileDist" :value="20"
                                     @change.stop="searchApartment()" v-model="dist">
-                                <label class="form-check-label" for="dist">20km</label>
+                                <label class="form-check-label" for="mobileDist">20km</label>
                             </div>
                             <div class="d-flex flex-column justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="dist" id="dist" :value="40"
+                                <input class="form-check-input" type="radio" name="mobileDist" id="mobileDist" :value="40"
                                     @change.stop="searchApartment()" v-model="dist">
-                                <label class="form-check-label" for="dist">40km</label>
+                                <label class="form-check-label" for="mobileDist">40km</label>
                             </div>
                             <div class="d-flex flex-column justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="dist" id="dist" :value="60"
+                                <input class="form-check-input" type="radio" name="mobileDist" id="mobileDist" :value="60"
                                     @change.stop="searchApartment()" v-model="dist">
-                                <label class="form-check-label" for="dist">60km</label>
+                                <label class="form-check-label" for="mobileDist">60km</label>
                             </div>
                         </div>
                     </div>
@@ -136,8 +136,8 @@ export default {
             <div class="col" v-if="apartments" v-for="apartment in apartments">
                 <CardList :apartment="apartment" />
             </div>
-            <div class="col" v-else v-for="apartment in data">
-                <CardList :apartment="apartment" />
+            <div class="col alert alert-danger" v-else >
+                Nessun Appartamento
             </div>
         </div>
         <!-- Fine card degli appartamenti -->
@@ -241,8 +241,8 @@ export default {
                 <div class="col" v-if="apartments" v-for="apartment in apartments">
                     <CardList :apartment="apartment" />
                 </div>
-                <div class="col" v-else v-for="apartment in data">
-                    <CardList :apartment="apartment" />
+                <div class="col alert alert-danger" v-else>
+                   Nessun Appartamento
                 </div>
             </div>
 
