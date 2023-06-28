@@ -253,7 +253,7 @@ export default {
                 <li role="button" class="ms-3" :class="[finish >= services.length - 1 ? 'd-none' : '']" @click="next()"><i
                         class="fa-solid fa-chevron-right"></i></li>
             </ul>
-            <div class="row row-cols-1 g-3 row-cols-md-3 row-cols-lg-4 my-3 pb-3">
+            <div class="row row-cols-1 g-3 row-cols-md-3 row-cols-lg-4 my-3" id="apart">
                 <div class="col" v-if="apartments" v-for="apartment in apartments">
                     <CardList :apartment="apartment" />
                 </div>
@@ -294,7 +294,9 @@ export default {
 nav {
     padding-top: 3.125rem;
 }
-
+#apart{
+    padding-bottom: 70px;
+}
 .hover-green {
     font-size: 13px;
 }
