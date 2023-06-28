@@ -16,13 +16,13 @@ export default defineComponent({
         SearchApp,
     },
     methods: {
-        ...mapActions(useApiStore, ['getData']),
+        ...mapActions(useApiStore, ['getSponsor']),
     },
     computed: {
-        ...mapState(useApiStore, ["data"]),
+        ...mapState(useApiStore, ['sponsor']),
     },
     created() {
-        this.getData();
+        this.getSponsor();
     }
 })
 </script>
@@ -32,7 +32,7 @@ export default defineComponent({
             <SearchApp></SearchApp>
             <div id="carousel-desktop" class="d-none d-lg-block">
                 <Carousel :itemsToShow="3.95" :wrapAround="true" :transition="500" :autoplay="5000">
-                    <Slide v-for="slide in data" :key="slide">
+                    <Slide v-for="slide in sponsor" :key="slide">
                         <div class="carousel__item">
                             <img class="img-fluid" :src="slide.cover_image" :alt="slide.title">
                         </div>
@@ -44,7 +44,7 @@ export default defineComponent({
             </div>
             <div id="carousel-mobile" class="d-lg-none">
                 <Carousel :wrapAround="true" :autoplay="5000">
-                    <Slide v-for="slide in data" :key="slide">
+                    <Slide v-for="slide in sponsor" :key="slide">
                         <div class="carousel__item">
                             <img class="img-fluid" :src="slide.cover_image" :alt="slide.title">
                         </div>

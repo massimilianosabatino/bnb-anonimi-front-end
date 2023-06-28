@@ -36,7 +36,7 @@ export default {
       <div class="row align-items-center p-0">
         <p class="mb-0 badge col-12 col-lg-2 me-2 mb-3 mb-lg-0 ">{{ detail.square_meters }} &#x33A1;</p>
         <button type="button" class="badge col-12 col-lg-7 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          {{ detail.address.substring(0,25) }}
+          {{ detail.address }}
         </button>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
@@ -164,7 +164,7 @@ export default {
 
       <div class="col-12 col-lg-8 px-md-4 mt-5 mt-lg-0">
         <h5 class="">Dove Alloggerai</h5>
-        <div class="badge">{{ detail.address.substring(0,25) }}</div>
+        <div class="badge">{{ detail.address }}</div>
         <div id="map"></div>
       </div>
       <!--/Servizi-->

@@ -6,7 +6,9 @@ export const useApiStore = defineStore('api', {
     state: () => {
         return {
             api: 'http://127.0.0.1:8000/api/apartments',
-            data: null
+            sponsorApi: 'http://127.0.0.1:8000/api/sponsor',
+            data: null,
+            sponsor: null,
         }
     },
     actions: {
@@ -19,6 +21,16 @@ export const useApiStore = defineStore('api', {
                     console.log(error);
                 })
 
+        },
+        getSponsor() {
+            axios.get(this.sponsorApi)
+                .then((response) => {
+                    console.log(response);
+                    this.sponsor = response.data.result;
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
         }
     }
 })

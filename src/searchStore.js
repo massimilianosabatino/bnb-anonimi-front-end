@@ -8,7 +8,7 @@ export const useSearchStore = defineStore("search", {
       apartments: null,
       lat: null,
       lon: null,
-      dist: 0,
+      dist: 20,
       services: null,
       clicked: [],
       start: 0,
