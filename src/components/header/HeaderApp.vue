@@ -51,7 +51,7 @@ header {
     right: 0;
     left: 0;
     top: 0;
-    z-index: 1;
+    z-index: 10;
     color: black;
     font-size: 1.25rem;
     font-weight: bold;

@@ -64,71 +64,76 @@ export default {
 
             <!-- Contenuto offcanvas bottom -->
             <div class="offcanvas-body small row row-cols-1 row-cols-md-2">
-                <div class="mb-5">
-
-                    <!-- Sezione scelta della distanza -->
-                    <div class="pb-3">
-                        <div class="fs-5 fw-bold" for="dist">Distanza</div>
-                        <div class="row row-cols-3 align-items-center">
-                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                <input checked class="form-check-input" type="radio" name="mobileDist" id="mobileDist"
-                                    :value="20" @change.stop="searchApartment()" v-model="dist">
-                                <label class="form-check-label" for="mobileDist">20km</label>
-                            </div>
-                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="mobileDist" id="mobileDist" :value="40"
-                                    @change.stop="searchApartment()" v-model="dist">
-                                <label class="form-check-label" for="mobileDist">40km</label>
-                            </div>
-                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="mobileDist" id="mobileDist" :value="60"
-                                    @change.stop="searchApartment()" v-model="dist">
-                                <label class="form-check-label" for="mobileDist">60km</label>
+                <form>
+                    <div class="mb-5">
+                        <!-- Sezione scelta della distanza -->
+                        <div class="pb-3">
+                            <div class="fs-5 fw-bold" for="dist">Distanza</div>
+                            <div class="row row-cols-3 align-items-center">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <input checked class="form-check-input" type="radio" name="mobileDist" id="mobileDist"
+                                        :value="20" v-model="dist">
+                                    <label class="form-check-label" for="mobileDist">20km</label>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <input class="form-check-input" type="radio" name="mobileDist" id="mobileDist"
+                                        :value="40" v-model="dist">
+                                    <label class="form-check-label" for="mobileDist">40km</label>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <input class="form-check-input" type="radio" name="mobileDist" id="mobileDist"
+                                        :value="60" v-model="dist">
+                                    <label class="form-check-label" for="mobileDist">60km</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- fine sezione scelta della distanza -->
+                        <!-- fine sezione scelta della distanza -->
 
-                    <!-- Sezione filtri aggiuntivi -->
-                    <div class="pb-3">
-                        <label class="form-label d-block fs-5 fw-bold" for="rooms">Stanze</label>
-                        <input class="form-range" type="range" step="1" name="rooms" id="rooms" v-model="rooms" min="1"
-                            max="5" @change.stop="searchApartment()">
-                        <p class="text-center">{{ rooms }}</p>
+                        <!-- Sezione filtri aggiuntivi -->
+                        <div class="pb-3">
+                            <label class="form-label d-block fs-5 fw-bold" for="rooms">Stanze</label>
+                            <input class="form-range" type="range" step="1" name="rooms" id="rooms" v-model="rooms" min="1"
+                                max="5">
+                            <p class="text-center">{{ rooms }}</p>
+                        </div>
+                        <div class="pb-3">
+                            <label class="form-label d-block fs-5 fw-bold" for="bath">Bagni</label>
+                            <input class="form-range" type="range" step="1" name="bath" id="bath" v-model="bath" min="1"
+                                max="5">
+                            <p class="text-center">{{ bath }}</p>
+                        </div>
+                        <div class="pb-3">
+                            <label class="form-label d-block fs-5 fw-bold" for="beds">Letti</label>
+                            <input class="form-range" type="range" step="1" name="beds" id="beds" v-model="beds" min="1"
+                                max="5">
+                            <p class="text-center">{{ beds }}</p>
+                        </div>
+                        <div>
+                            <label for="price" class="form-label d-block fs-5 fw-bold">Prezzo</label>
+                            <input class="form-range text-dark" type="range" step="20" name="price" id="price"
+                                v-model="price" min="20" max="1000">
+                            <p class="text-center">{{ price }} €</p>
+                        </div>
+                        <!-- Fine sezione filtri aggiuntivi -->
                     </div>
-                    <div class="pb-3">
-                        <label class="form-label d-block fs-5 fw-bold" for="bath">Bagni</label>
-                        <input class="form-range" type="range" step="1" name="bath" id="bath" v-model="bath" min="1" max="5"
-                            @change.stop="searchApartment()">
-                        <p class="text-center">{{ bath }}</p>
+                    <!-- Sezione della scelta dei servizi -->
+                    <ul class="row row-cols-3 row-cols-sm-4 flex-wrap justifyt-content-between list-unstyled">
+                        <li v-for="service in services">
+                            <input type="checkbox" class="btn-check" :id="service.name" @change.stop="searchApartment()"
+                                :value="service.id" v-model="clicked">
+                            <label class="d-flex flex-column text-center aling-items-center justify-content-center"
+                                :for="service.name" id="service"
+                                :class="[clicked.includes(service.id) ? 'active' : 'null']">
+                                <p v-html="service.icon"></p>
+                                <p class="hover-green">{{ service.name }}</p>
+                            </label>
+                        </li>
+                    </ul>
+                    <!-- fine sezione della scelta dei servizi -->
+                    <div class="btn pippo align-self-center" @click.prevent="searchApartment()">
+                            Applica
                     </div>
-                    <div class="pb-3">
-                        <label class="form-label d-block fs-5 fw-bold" for="beds">Letti</label>
-                        <input class="form-range" type="range" step="1" name="beds" id="beds" v-model="beds" min="1" max="5"
-                            @change.stop="searchApartment()">
-                        <p class="text-center">{{ beds }}</p>
-                    </div>
-                    <div>
-                        <label for="price" class="form-label d-block fs-5 fw-bold">Prezzo</label>
-                        <input class="form-range text-dark" type="range" step="20" name="price" id="price" v-model="price"
-                            min="20" max="1000" @change.stop="searchApartment()">
-                        <p class="text-center">{{ price }} €</p>
-                    </div>
-                    <!-- Fine sezione filtri aggiuntivi -->
-                </div>
-                <!-- Sezione della scelta dei servizi -->
-                <ul class="row row-cols-3 row-cols-sm-4 flex-wrap justifyt-content-between list-unstyled">
-                    <li v-for="service in services">
-                        <input type="checkbox" class="btn-check" :id="service.name" @change.stop="searchApartment()"
-                            :value="service.id" v-model="clicked">
-                        <label class="d-flex flex-column text-center aling-items-center justify-content-center"
-                            :for="service.name" id="service" :class="[clicked.includes(service.id) ? 'active' : 'null']">
-                            <p v-html="service.icon"></p>
-                            <p class="hover-green">{{ service.name }}</p>
-                        </label>
-                    </li>
-                </ul>
-                <!-- fine sezione della scelta dei servizi -->
+                </form>
             </div>
             <!-- Fine contenuto offcanvas bottom -->
         </div>
@@ -138,9 +143,6 @@ export default {
         <div class="row row-cols-1 g-3 row-cols-md-3 row-cols-lg-4 my-3">
             <div class="col" v-if="apartments" v-for="apartment in apartments">
                 <CardList :apartment="apartment" />
-            </div>
-            <div class="col alert alert-danger" v-else>
-                Nessun Appartamento
             </div>
         </div>
         <!-- Fine card degli appartamenti -->
@@ -171,17 +173,17 @@ export default {
                                     <div class="row row-cols-3 align-items-center">
                                         <div class="d-flex flex-column justify-content-center align-items-center">
                                             <input checked class="form-check-input" type="radio" name="dist" id="dist"
-                                                :value="20" @change.stop="searchApartment()" v-model="dist">
+                                                :value="20" v-model="dist">
                                             <label class="form-check-label" for="dist">20km</label>
                                         </div>
                                         <div class="d-flex flex-column justify-content-center align-items-center">
                                             <input class="form-check-input" type="radio" name="dist" id="dist" :value="40"
-                                                @change.stop="searchApartment()" v-model="dist">
+                                                v-model="dist">
                                             <label class="form-check-label" for="dist">40km</label>
                                         </div>
                                         <div class="d-flex flex-column justify-content-center align-items-center">
                                             <input class="form-check-input" type="radio" name="dist" id="dist" :value="60"
-                                                @change.stop="searchApartment()" v-model="dist">
+                                                v-model="dist">
                                             <label class="form-check-label" for="dist">60km</label>
                                         </div>
                                     </div>
@@ -192,29 +194,29 @@ export default {
                                 <div class="pb-3">
                                     <label class="form-label d-block fs-5 fw-bold" for="rooms">Stanze</label>
                                     <input class="form-range" type="range" step="1" name="rooms" id="rooms" v-model="rooms"
-                                        min="1" max="5" @input.stop="searchApartment()">
+                                        min="1" max="5">
                                     <p class="text-center">{{ rooms }}</p>
                                 </div>
                                 <div class="pb-3">
                                     <label class="form-label d-block fs-5 fw-bold" for="bath">Bagni</label>
                                     <input class="form-range" type="range" step="1" name="bath" id="bath" v-model="bath"
-                                        min="1" max="5" @input.stop="searchApartment()">
+                                        min="1" max="5">
                                     <p class="text-center">{{ bath }}</p>
                                 </div>
                                 <div class="pb-3">
                                     <label class="form-label d-block fs-5 fw-bold" for="beds">Letti</label>
                                     <input class="form-range" type="range" step="1" name="beds" id="beds" v-model="beds"
-                                        min="1" max="5" @input.stop="searchApartment()">
+                                        min="1" max="5">
                                     <p class="text-center">{{ beds }}</p>
                                 </div>
                                 <div>
                                     <label for="price" class="form-label d-block fs-5 fw-bold">Prezzo</label>
                                     <input class="form-range text-dark" type="range" step="20" name="price" id="price"
-                                        v-model="price" min="20" max="1000" @input.stop="searchApartment()">
+                                        v-model="price" min="20" max="1000">
                                     <p class="text-center">{{ price }} €</p>
                                 </div>
                                 <!-- Fine filtri aggiuntivi -->
-                                <div class="btn pippo align-self-center">
+                                <div class="btn pippo align-self-center" @click.prevent="searchApartment()">
                                     Applica
                                 </div>
                             </form>
@@ -272,16 +274,16 @@ export default {
     </template>
     <!--- Loading--->
     <div v-else-if="!apartments" class="d-flex justify-content-center align-items-center franco">
-            <div class="lds-roller">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+        <div class="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
     <!--- Loading--->
 </template>
@@ -323,8 +325,7 @@ nav {
 .border-link {
     border: 1px solid $link;
 }
-.franco{
-    height: calc(90vh - 150px);
-}
 
-</style>
+.franco {
+    height: calc(90vh - 150px);
+}</style>
