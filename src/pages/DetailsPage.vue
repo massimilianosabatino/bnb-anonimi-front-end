@@ -144,10 +144,10 @@ export default {
       </div>
 
       <div class="col-12 col-lg-8 my-2">
-        <h4>Dove Alloggerai</h4>
+        <h4 class="fw-bold">Dove Alloggerai</h4>
         <div class="d-flex justify-content-between align-items-center">
           <div class="badge fs-5">{{ detail.address }}</div>
-          <div class="text-end fs-5">{{ detail.price }}€ notte</div>
+          <div class="text-end fs-5"> <span class="fw-bold">{{ detail.price }}€</span> notte</div>
         </div>
 
         <div id="map"></div>
@@ -170,7 +170,6 @@ export default {
 .badge {
   color: $link;
   padding: 0;
-  font-size: 1rem;
   background-color: transparent;
 }
 
