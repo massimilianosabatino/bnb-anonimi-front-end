@@ -30,7 +30,7 @@ export default {
                     <ul class="dropdown-menu p-2">
                         <li><router-link class="py-3 d-block d-sm-none" :to="{ name: 'Home' }">Home</router-link></li>
                         <li><router-link class="py-3 d-block d-sm-none" :to="{ name: 'Search' }">Appartamenti</router-link></li>
-                        <li><a class="py-3 d-block" href="#">Accedi/Registrati</a></li>
+                        <li><a class="py-3 d-block" href="http://127.0.0.1:8000/">Accedi/Registrati</a></li>
                     </ul>
                 </div>
             </div>
