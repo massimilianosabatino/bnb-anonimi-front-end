@@ -1,6 +1,5 @@
 <script>
 import CardList from "../components/utils/CardList.vue";
-import SearchApp from "../components/utils/SearchApp.vue";
 import FilterApp from "../components/utils/FilterApp.vue";
 import { useApiStore } from "../apiStore";
 import { useSearchStore } from "../searchStore";
@@ -12,7 +11,6 @@ export default {
   name: "SearchPage",
   components: {
     CardList,
-    SearchApp,
     FilterApp
   },
   methods:{
@@ -31,7 +29,6 @@ export default {
 <template>
   <main>
     <div class="container">
-      <SearchApp/>
       <FilterApp/>
     </div>
   </main>
