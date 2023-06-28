@@ -31,6 +31,7 @@ export const useSearchStore = defineStore("search", {
             price:this.price,
             rooms:this.rooms,
             bath:this.bath,
+            beds: this.beds
         })
         .then((response) => {
           this.apartments = response.data.results;
