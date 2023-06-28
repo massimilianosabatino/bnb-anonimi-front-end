@@ -3,11 +3,13 @@ import { useApiStore } from "../../apiStore";
 import { useSearchStore } from "../../searchStore";
 import { mapState, mapActions, mapWritableState } from "pinia";
 import CardList from "./CardList.vue";
+import SearchApp from "./SearchApp.vue";
 
 export default {
     name: "FilterApp",
     components: {
         CardList,
+        SearchApp
     },
     methods: {
         ...mapActions(useApiStore, ["getData"]),
@@ -68,8 +70,8 @@ export default {
                         <div class="fs-5 fw-bold" for="dist">Distanza</div>
                         <div class="row row-cols-3 align-items-center">
                             <div class="d-flex flex-column justify-content-center align-items-center">
-                                <input checked class="form-check-input" type="radio" name="mobileDist" id="mobileDist" :value="20"
-                                    @change.stop="searchApartment()" v-model="dist">
+                                <input checked class="form-check-input" type="radio" name="mobileDist" id="mobileDist"
+                                    :value="20" @change.stop="searchApartment()" v-model="dist">
                                 <label class="form-check-label" for="mobileDist">20km</label>
                             </div>
                             <div class="d-flex flex-column justify-content-center align-items-center">
@@ -136,7 +138,7 @@ export default {
             <div class="col" v-if="apartments" v-for="apartment in apartments">
                 <CardList :apartment="apartment" />
             </div>
-            <div class="col alert alert-danger" v-else >
+            <div class="col alert alert-danger" v-else>
                 Nessun Appartamento
             </div>
         </div>
@@ -145,91 +147,102 @@ export default {
     <!-- Fine filtri formato mobile -->
 
     <!-- Nav bar per il formato desktop -->
-    <nav class="d-none d-lg-flex gap-4 align-items-start">
-        <!-- Accordion per il formato desktop -->
-        <div class="accordion col-2" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <!-- Pulsante per aprire/chiudere accordion -->
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        Filtra
-                    </button>
-                </h2>
-                <!-- Contenuto Accordion -->
-                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <!-- Sezione per la scelta della distanza -->
-                        <div class="pb-3">
-                            <div class="fs-5 fw-bold" for="dist">Distanza</div>
-                            <div class="row row-cols-3 align-items-center">
-                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <input checked class="form-check-input" type="radio" name="dist" id="dist" :value="20"
-                                        @change.stop="searchApartment()" v-model="dist">
-                                    <label class="form-check-label" for="dist">20km</label>
+    <nav class="d-none d-lg-flex gap-4 align-items-start flex-column">
+        <div class="row justify-content-center align-items-center w-100 flex-nowrap p-4">
+            <!-- Accordion per il formato desktop -->
+            <div class="accordion col-1" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <!-- Pulsante per aprire/chiudere accordion -->
+                        <button class="accordion-button collapsed text-center p-2" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Filtra
+                        </button>
+                    </h2>
+                    <!-- Contenuto Accordion -->
+                    <div id="collapseOne" class="accordion-collapse collapse z-3 position-absolute"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body bg-body border-link rounded my-3 p-4">
+                            <form class="d-flex flex-column">
+                                <!-- Sezione per la scelta della distanza -->
+                                <div class="pb-3">
+                                    <div class="fs-5 fw-bold" for="dist">Distanza</div>
+                                    <div class="row row-cols-3 align-items-center">
+                                        <div class="d-flex flex-column justify-content-center align-items-center">
+                                            <input checked class="form-check-input" type="radio" name="dist" id="dist"
+                                                :value="20" @change.stop="searchApartment()" v-model="dist">
+                                            <label class="form-check-label" for="dist">20km</label>
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-center align-items-center">
+                                            <input class="form-check-input" type="radio" name="dist" id="dist" :value="40"
+                                                @change.stop="searchApartment()" v-model="dist">
+                                            <label class="form-check-label" for="dist">40km</label>
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-center align-items-center">
+                                            <input class="form-check-input" type="radio" name="dist" id="dist" :value="60"
+                                                @change.stop="searchApartment()" v-model="dist">
+                                            <label class="form-check-label" for="dist">60km</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <input class="form-check-input" type="radio" name="dist" id="dist" :value="40"
-                                        @change.stop="searchApartment()" v-model="dist">
-                                    <label class="form-check-label" for="dist">40km</label>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <input class="form-check-input" type="radio" name="dist" id="dist" :value="60"
-                                        @change.stop="searchApartment()" v-model="dist">
-                                    <label class="form-check-label" for="dist">60km</label>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Fine sezione distanza -->
+                                <!-- Fine sezione distanza -->
 
-                        <!-- Filtri aggiuntivi -->
-                        <div class="pb-3">
-                            <label class="form-label d-block fs-5 fw-bold" for="rooms">Stanze</label>
-                            <input class="form-range" type="range" step="1" name="rooms" id="rooms" v-model="rooms" min="1"
-                                max="5" @input.stop="searchApartment()">
-                            <p class="text-center">{{ rooms }}</p>
+                                <!-- Filtri aggiuntivi -->
+                                <div class="pb-3">
+                                    <label class="form-label d-block fs-5 fw-bold" for="rooms">Stanze</label>
+                                    <input class="form-range" type="range" step="1" name="rooms" id="rooms" v-model="rooms"
+                                        min="1" max="5" @input.stop="searchApartment()">
+                                    <p class="text-center">{{ rooms }}</p>
+                                </div>
+                                <div class="pb-3">
+                                    <label class="form-label d-block fs-5 fw-bold" for="bath">Bagni</label>
+                                    <input class="form-range" type="range" step="1" name="bath" id="bath" v-model="bath"
+                                        min="1" max="5" @input.stop="searchApartment()">
+                                    <p class="text-center">{{ bath }}</p>
+                                </div>
+                                <div class="pb-3">
+                                    <label class="form-label d-block fs-5 fw-bold" for="beds">Letti</label>
+                                    <input class="form-range" type="range" step="1" name="beds" id="beds" v-model="beds"
+                                        min="1" max="5" @input.stop="searchApartment()">
+                                    <p class="text-center">{{ beds }}</p>
+                                </div>
+                                <div>
+                                    <label for="price" class="form-label d-block fs-5 fw-bold">Prezzo</label>
+                                    <input class="form-range text-dark" type="range" step="20" name="price" id="price"
+                                        v-model="price" min="20" max="1000" @input.stop="searchApartment()">
+                                    <p class="text-center">{{ price }} €</p>
+                                </div>
+                                <!-- Fine filtri aggiuntivi -->
+                                <div class="btn pippo align-self-center">
+                                    Applica
+                                </div>
+                            </form>
                         </div>
-                        <div class="pb-3">
-                            <label class="form-label d-block fs-5 fw-bold" for="bath">Bagni</label>
-                            <input class="form-range" type="range" step="1" name="bath" id="bath" v-model="bath" min="1"
-                                max="5" @input.stop="searchApartment()">
-                            <p class="text-center">{{ bath }}</p>
-                        </div>
-                        <div class="pb-3">
-                            <label class="form-label d-block fs-5 fw-bold" for="beds">Letti</label>
-                            <input class="form-range" type="range" step="1" name="beds" id="beds" v-model="beds" min="1"
-                                max="5" @input.stop="searchApartment()">
-                            <p class="text-center">{{ beds }}</p>
-                        </div>
-                        <div>
-                            <label for="price" class="form-label d-block fs-5 fw-bold">Prezzo</label>
-                            <input class="form-range text-dark" type="range" step="20" name="price" id="price"
-                                v-model="price" min="20" max="1000" @input.stop="searchApartment()">
-                            <p class="text-center">{{ price }} €</p>
-                        </div>
-                        <!-- Fine filtri aggiuntivi -->
                     </div>
+                    <!-- Fine contenuto accordion -->
                 </div>
-                <!-- Fine contenuto accordion -->
+            </div>
+            <!-- Fine accordion formato desktop -->
+            <div class="col-11">
+                <SearchApp />
             </div>
         </div>
-        <!-- Fine accordion formato desktop -->
 
-        <!-- Nav bar per la selezion dei servizi -->
-        <div>
+        <!-- Nav bar per la selezione dei servizi -->
+        <div class="row justify-content-center w-100">
             <ul class="list-unstyled d-flex justify-content-between align-items-center me-0 mb-0 col-auto" v-if="services">
 
                 <!-- Pulsante indietro -->
                 <li role="button" class="me-3" :class="[start <= 0 ? 'd-none' : '']" @click="prev()"><i
                         class="fa-solid fa-chevron-left"></i></li>
 
-                <li v-for="(service, index) in services.slice(this.start, this.finish)" class="mx-3">
+                <li v-for="(service, index) in services.slice(this.start, this.finish)" class="mx-3 my-3">
                     <input type="checkbox" class="btn-check" :id="service.name" @change.stop="searchApartment()"
                         :value="service.id" v-model="clicked">
                     <label class="d-flex flex-column justify-content-center align-items-center" :for="service.name"
                         id="service" :class="[clicked.includes(service.id) ? 'active' : 'null']">
-                        <p v-html="service.icon"></p>
-                        <p class="hover-green">{{ service.name }}</p>
+                        <p class="fs-5" v-html="service.icon"></p>
+                        <p class="hover-green fs-6">{{ service.name }}</p>
                     </label>
                 </li>
 
@@ -237,24 +250,38 @@ export default {
                 <li role="button" class="ms-3" :class="[finish >= services.length - 1 ? 'd-none' : '']" @click="next()"><i
                         class="fa-solid fa-chevron-right"></i></li>
             </ul>
-            <div class="row row-cols-1 g-3 row-cols-md-3 row-cols-lg-4 my-3">
+            <div class="row row-cols-1 g-3 row-cols-md-3 row-cols-lg-4 my-3 p-4">
                 <div class="col" v-if="apartments" v-for="apartment in apartments">
                     <CardList :apartment="apartment" />
                 </div>
-                <div class="col alert alert-danger" v-else>
-                   Nessun Appartamento
-                </div>
+                <!-- <div class="col" v-else>
+                    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                </div> -->
             </div>
 
         </div>
         <!-- Fine nav per la selezione dei servizi -->
-
-
     </nav>
     <!-- Fine nav bar per il formato desktop -->
+
+    <!--- Loading--->
+    <div v-if="!apartments" class="d-flex justify-content-center align-items-center franco">
+            <div class="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+    </div>
+    <!--- Loading--->
 </template>
 <style lang="scss" scoped>
 @use '../../assets/scss/_partial/variables' as *;
+@use '../../assets/scss/_partial/loading' as *;
 
 nav {
     padding-top: 3.125rem;
@@ -269,6 +296,16 @@ nav {
     cursor: pointer;
 }
 
+.pippo {
+    border: 1px solid $link;
+}
+
+.pippo:hover {
+    background-color: $link;
+    color: black;
+    cursor: pointer;
+}
+
 .active {
     color: $link;
 }
@@ -276,4 +313,12 @@ nav {
 .offcanvas-bottom {
     height: 60% !important;
 }
+
+.border-link {
+    border: 1px solid $link;
+}
+.franco{
+    height: calc(90vh - 150px);
+}
+
 </style>

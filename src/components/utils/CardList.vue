@@ -7,17 +7,31 @@ export default {
 };
 </script>
 <template>
-  <div class="card p-0 my-2 h-100 " >
+  <router-link :to="{ name: 'Details', params: {slug: apartment.slug, id:apartment.id} }" id="zoom" class="card p-0 my-2 h-100 " >
     <img class="card-img-top" v-if="apartment.cover_image" :src="apartment.cover_image" :alt="apartment.title">
-    <div class="card-body fs-6 d-flex flex-column">
+    <div class="card-body fs-6 d-flex flex-column justify-content-center">
       <h5 class="card-title">{{ apartment.title }}</h5>
+      <hr>
       <p class="card-text">{{ apartment.address }}</p>
-     <router-link :to="{ name: 'Details', params: {slug: apartment.slug, id:apartment.id} }" class="btn btn-outline-dark mt-auto btn-small">Info</router-link>
+      <p class="card-text">
+        <ul class="list-unstyled d-flex mt-3">
+          <li class="mx-2" v-for="service in apartment.services">
+            <p v-html="service.icon"></p>
+          </li>
+        </ul>
+      </p>
+      <p class="card-text text-end"><span class="fw-bold">{{ apartment.price }} €</span> a notte</p>
     </div>
-  </div>
+  </router-link>
 </template>
 <style lang="scss" scoped>
 .btn-small{
   width: fit-content;
+}
+.card{
+  text-decoration: none;
+}
+#zoom:hover{
+  scale: 1.03;
 }
 </style>

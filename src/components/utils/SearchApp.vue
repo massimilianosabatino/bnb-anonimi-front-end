@@ -15,9 +15,9 @@ export default {
 </script>
 <template>
   <!--Search-->
-  <div id="search">
-    <form @submit.prevent="searchApartment" class="d-flex justify-content-center align-items-center gap-3" role="search">
-      <div id="address"></div>
+  <div id="search" class="w-100">
+    <form @submit.prevent="searchApartment" class="d-flex justify-content-end align-items-center gap-3 w-100" role="search">
+      <div class="w-100" id="address"></div>
       <router-link :to="{ name: 'Search' }">
         <button class="btn btn-outline-success" type="submit" @click="searchApartment()" id="cerca">Cerca</button>
       </router-link>
