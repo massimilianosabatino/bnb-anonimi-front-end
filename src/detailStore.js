@@ -28,6 +28,6 @@ export const useDetailStore = defineStore('detail', {
                 zoom: 16,
             })
             var marker = new tt.Marker().setLngLat(HQ).addTo(map);
-        }
+        },
     }
 })

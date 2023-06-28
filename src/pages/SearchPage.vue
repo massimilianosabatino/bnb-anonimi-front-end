@@ -38,6 +38,6 @@ export default {
 @use "../assets/scss/_partial/variables" as *;
 
 main {
-  margin-top: 9.375rem;
+  margin-top: 6.25rem;
 }
 </style>

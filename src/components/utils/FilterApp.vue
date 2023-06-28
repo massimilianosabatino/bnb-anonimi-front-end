@@ -40,6 +40,7 @@ export default {
         ...mapWritableState(useSearchStore, ["rooms"]),
         ...mapWritableState(useSearchStore, ["beds"]),
         ...mapWritableState(useSearchStore, ["bath"]),
+        ...mapState(useSearchStore, ['response'])
     },
     created() {
         this.getServices();
@@ -250,7 +251,7 @@ export default {
                 <li role="button" class="ms-3" :class="[finish >= services.length - 1 ? 'd-none' : '']" @click="next()"><i
                         class="fa-solid fa-chevron-right"></i></li>
             </ul>
-            <div class="row row-cols-1 g-3 row-cols-md-3 row-cols-lg-4 my-3 p-4">
+            <div class="row row-cols-1 g-3 row-cols-md-3 row-cols-lg-4 my-3 pb-3">
                 <div class="col" v-if="apartments" v-for="apartment in apartments">
                     <CardList :apartment="apartment" />
                 </div>
@@ -264,8 +265,13 @@ export default {
     </nav>
     <!-- Fine nav bar per il formato desktop -->
 
+    <template v-if="!apartments && response">
+        <div class="alert text-center h-100">
+            Nessun appartamento trovato nella ricerca
+        </div>
+    </template>
     <!--- Loading--->
-    <div v-if="!apartments" class="d-flex justify-content-center align-items-center franco">
+    <div v-else-if="!apartments" class="d-flex justify-content-center align-items-center franco">
             <div class="lds-roller">
                 <div></div>
                 <div></div>

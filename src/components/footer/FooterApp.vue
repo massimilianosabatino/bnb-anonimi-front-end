@@ -52,6 +52,11 @@ footer {
     height: 3.125rem;
     color: #333;
     padding: 5px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
     ul {
         li {
             margin: 0 1.25rem;

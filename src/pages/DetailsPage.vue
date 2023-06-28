@@ -162,6 +162,10 @@ export default {
 <style scoped lang="scss">
 @use '../assets/scss/_partial/variables' as *;
 
+.container{
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
 .primary {
   background-color: $primary;
   color: white;

@@ -16,12 +16,14 @@ export const useSearchStore = defineStore("search", {
       price: 1000,
       rooms: 1,
       beds: 1,
-      bath: 1
+      bath: 1,
+      response: null,
     };
   },
   actions: {
       searchApartment() {
         this.apartments=null;
+        this.response=null;
       axios
         .post(this.api, {
             lat:this.lat,
@@ -36,6 +38,7 @@ export const useSearchStore = defineStore("search", {
         .then((response) => {
           this.apartments = response.data.results;
           console.log(this.apartments);
+          this.response = response.data.success;
         })
         .catch((error) => {
           console.log(error);

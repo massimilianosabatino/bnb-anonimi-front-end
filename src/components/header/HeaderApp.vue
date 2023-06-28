@@ -47,12 +47,12 @@ header {
     box-shadow: 5px 0px 10px 3px $primary;
     width: 100%;
     height: 6.25rem;
-    // position: fixed;
-    // right: 0;
-    // left: 0;
-    // top: 0;
-    // z-index: 1;
-    // color: black;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    color: black;
     font-size: 1.25rem;
     font-weight: bold;
     background-color: white;

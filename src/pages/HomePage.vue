@@ -61,14 +61,9 @@ export default defineComponent({
     </main>
 </template>
 <style lang="scss" scoped>
-// #home {
-//     width: 100%;
-//     margin-top: 100px;
-//     height: calc(100dvh - 9.375rem);
-// }
+
 .container {
-    margin-top: 6.25rem;
-    height: calc(100dvh - 9.375rem);
+    margin-top: 12.5rem;
 }
 
 #carousel-desktop {
