@@ -6,44 +6,37 @@ export const useViewStore = defineStore('view', {
     state: () => {
         return {
             api: 'http://127.0.0.1:8000/api/views',
-            ip_address: 0,
-            date: null,
+            ip_address: null,
         }
     },
+
     actions: {
-         countView() {
-            axios.get('https://api.ipify.org?format=json')
+        countView() {
+            let date = new Date().toJSON().slice(0, 10);
+            console.log(localStorage.getItem('ip_address'));
+            axios.post(this.api, {
+                visit_date: date,
+                apartment_id: router.currentRoute.value.params.id,
+                ip_address: localStorage.getItem('ip_address'),
+            })
                 .then((response) => {
-                    this.ip_address = response.data.ip;
-                    console.log(this.ip_address);
+                   console.log(response);
                 })
-                .then(() => {
-                    let id_ap = router.currentRoute.value.params.id
-                    this.date = Date.now();
-                    axios.post(this.api, {
-                        visit_date: this.date,
-                        apartment_id: id_ap,
-                        ip_address: this.ip_address
+
+
+        },
+        getIpAddress() {
+            console.log('pre chiamata')
+            if (!this.ip_address) {
+                console.log('in fi');
+                axios.get('https://api.ipify.org?format=json', { headers: 'Access-Control-Allow-Origin' })
+                    .then((response) => {
+                        this.ip_address= response.data.ip;
+                        localStorage.setItem('ip_address',this.ip_address)
+                        console.log(this.ip_address);
                     })
-                        .then((response) => {
-                            console.log(response);
-                        })
-
-                })
-
+            }
 
         },
-        async getIpAddress() {
-            axios.get('https://api.ipify.org?format=json')
-                .then((response) => {
-                    this.ip_address = response.data.ip;
-                    console.log(this.ip_address);
-                })
-
-        },
-        apiCalls() {
-
-            this.countView;
-        }
     }
 })

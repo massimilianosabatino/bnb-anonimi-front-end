@@ -7,6 +7,7 @@ import 'vue3-carousel/dist/carousel.css';
 import { useApiStore } from '../apiStore';
 import { mapState, mapActions, mapWritableState } from 'pinia';
 import { useSearchStore } from '../searchStore';
+import { useViewStore } from '../viewStore';
 
 export default defineComponent({
     name: 'Autoplay',
@@ -18,6 +19,7 @@ export default defineComponent({
     },
     methods: {
         ...mapActions(useApiStore, ['getSponsor']),
+        ...mapActions(useViewStore, ['getIpAddress']),
     },
     computed: {
         ...mapWritableState(useSearchStore,['address']),
@@ -26,6 +28,9 @@ export default defineComponent({
     created() {
         this.address = '';
         this.getSponsor();
+    },
+    mounted(){
+       this.getIpAddress(); 
     }
 })
 </script>
