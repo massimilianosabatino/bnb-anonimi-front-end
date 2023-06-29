@@ -50,6 +50,11 @@ export const useDetailStore = defineStore('detail', {
                 this.messageResult = response.data.result;
                 this.messageSuccess = response.data.success;
             }).then(() => {
+                if(this.messageSuccess){
+                    this.name = '';
+                    this.email = '';
+                    this.content = '';
+                }
                 let fail = document.getElementById('fallito');
                 let send = document.getElementById('inviato');
                 if (fail) {
@@ -63,6 +68,6 @@ export const useDetailStore = defineStore('detail', {
                     }, 3000)
                 }
             })
-        }
+        },
     }
 })
