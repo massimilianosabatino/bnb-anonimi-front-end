@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage.vue";
 import SearchPage from "./pages/SearchPage.vue";
 import DetailsPage from "./pages/DetailsPage.vue";
 import AboutUs from "./pages/AboutUs.vue";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
