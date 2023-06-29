@@ -26,6 +26,7 @@ export default {
   },
   created() {
     this.detailApart();
+    this.countView();
   },
 
 };

@@ -12,6 +12,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 
 import { createPinia } from 'pinia';
 
+import { DateTime } from "luxon";
+
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
