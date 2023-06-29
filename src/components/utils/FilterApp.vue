@@ -87,6 +87,8 @@ export default {
                                 </div>
                             </div>
                         </div>
+
+
                         <!-- fine sezione scelta della distanza -->
 
                         <!-- Sezione filtri aggiuntivi -->
@@ -114,31 +116,30 @@ export default {
                                 v-model="price" min="20" max="1000">
                             <p class="text-center">{{ price }} €</p>
                         </div>
-                        <!-- Fine sezione filtri aggiuntivi -->
-                    </div>
-                    <!-- Sezione della scelta dei servizi -->
-                    <ul class="row row-cols-3 row-cols-sm-4 flex-wrap justifyt-content-between list-unstyled">
-                        <li v-for="service in services">
-                            <input type="checkbox" class="btn-check" :id="service.name" @change.stop="searchApartment()"
-                                :value="service.id" v-model="clicked">
-                            <label class="d-flex flex-column text-center aling-items-center justify-content-center"
-                                :for="service.name" id="service"
-                                :class="[clicked.includes(service.id) ? 'active' : 'null']">
-                                <p v-html="service.icon"></p>
-                                <p class="hover-green">{{ service.name }}</p>
-                            </label>
-                        </li>
-                    </ul>
-                    <!-- fine sezione della scelta dei servizi -->
-                    <div class="btn pippo align-self-center" @click.prevent="searchApartment()">
+                        <div class="btn pippo align-self-center" @click.prevent="searchApartment()">
                             Applica
+                        </div>
                     </div>
                 </form>
+                <!-- Fine sezione filtri aggiuntivi -->
+                <!-- Sezione della scelta dei servizi -->
+                <ul class="row row-cols-3 row-cols-sm-4 flex-wrap justifyt-content-between list-unstyled">
+                    <li v-for="service in services">
+                        <input type="checkbox" class="btn-check" :id="service.name" @change.stop="searchApartment()"
+                            :value="service.id" v-model="clicked">
+                        <label class="d-flex flex-column text-center aling-items-center justify-content-center"
+                            :for="service.name" id="service" :class="[clicked.includes(service.id) ? 'active' : 'null']">
+                            <p v-html="service.icon"></p>
+                            <p class="hover-green">{{ service.name }}</p>
+                        </label>
+                    </li>
+                </ul>
+                <!-- fine sezione della scelta dei servizi -->
+
             </div>
             <!-- Fine contenuto offcanvas bottom -->
+            <!-- Fine offcanvas bottom -->
         </div>
-        <!-- Fine offcanvas bottom -->
-
         <!-- Card degli appartamenti -->
         <div class="row row-cols-1 g-3 row-cols-md-3 row-cols-lg-4 my-3">
             <div class="col" v-if="apartments" v-for="apartment in apartments">
@@ -146,9 +147,8 @@ export default {
             </div>
         </div>
         <!-- Fine card degli appartamenti -->
+        <!-- Fine filtri formato mobile -->
     </div>
-    <!-- Fine filtri formato mobile -->
-
     <!-- Nav bar per il formato desktop -->
     <nav class="d-none d-lg-flex gap-4 align-items-start flex-column">
         <div class="row justify-content-center align-items-center w-100 flex-nowrap p-4">
@@ -250,8 +250,9 @@ export default {
                 </li>
 
                 <!-- Pulsante avanti  -->
-                <li role="button" class="ms-3" :class="[finish >= services.length - 1 ? 'd-none' : '']" @click="next()"><i
-                        class="fa-solid fa-chevron-right"></i></li>
+                <li role="button" class="ms-3" :class="[finish >= services.length - 1 ? 'd-none' : '']" @click="next()">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </li>
             </ul>
             <div class="row row-cols-1 g-3 row-cols-md-3 row-cols-lg-4 my-3" id="apart">
                 <div class="col" v-if="apartments" v-for="apartment in apartments">
@@ -294,9 +295,11 @@ export default {
 nav {
     padding-top: 3.125rem;
 }
-#apart{
+
+#apart {
     padding-bottom: 70px;
 }
+
 .hover-green {
     font-size: 13px;
 }
@@ -330,4 +333,5 @@ nav {
 
 .franco {
     height: calc(90vh - 150px);
-}</style>
+}
+</style>
