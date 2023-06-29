@@ -13,14 +13,19 @@ export default {
     ...mapActions(useApiStore, ["getData"]),
     ...mapActions(useDetailStore, ['detailApart']),
     ...mapActions(useViewStore, ['countView']),
+    ...mapActions(useDetailStore, ['sendMessage']),
   },
   computed: {
     ...mapState(useSearchStore, ["services"]),
     ...mapWritableState(useDetailStore, ['detail']),
+    ...mapWritableState(useDetailStore, ['name']),
+    ...mapWritableState(useDetailStore, ['email']),
+    ...mapWritableState(useDetailStore, ['content']),
+    ...mapState(useDetailStore, ['messageResult']),
+    ...mapState(useDetailStore, ['messageSuccess']),
   },
   created() {
     this.detailApart();
-    this.countView();
   },
 
 };
@@ -50,6 +55,12 @@ export default {
               <a type="button" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-solid fa-xmark"></i></a>
             </div>
             <div class="offcanvas-body">
+              <div v-if="messageSuccess === true" class="text-success fw-bold mb-3" id="inviato">
+                {{ messageResult }}
+              </div>
+              <div v-else-if="messageSuccess === false" class="text-danger fw-bold mb-3" id="fallito">
+                {{ messageResult }}
+              </div>
               <div class="row">
                 <div class="col-12">
                   <form action="" method="post">
@@ -60,7 +71,7 @@ export default {
                           <font-awesome-icon icon="fa-solid fa-user" />
                         </span>
                         <input type="text" name="name" id="name" class="form-control form-control-sm"
-                          placeholder="Inserisci il tuo nome" autofocus>
+                          placeholder="Inserisci il tuo nome" autofocus v-model="name">
                       </div>
                     </div>
                     <div class="mb-3 text-start">
@@ -70,16 +81,18 @@ export default {
                           <font-awesome-icon icon="fa-solid fa-envelope" />
                         </span>
                         <input type="email" name="email" id="email" class="form-control form-control-sm"
-                          placeholder="Inserisci la tua email">
+                          placeholder="Inserisci la tua email" v-model="email">
                       </div>
                     </div>
                     <div class="mb-3 text-start">
                       <label for="message" class="form-label">Messaggio</label>
-                      <textarea name="message" id="message" rows="5" class="form-control form-control-sm"></textarea>
+                      <textarea name="message" id="message" rows="5" class="form-control form-control-sm"
+                        v-model="content"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-success">Invia</button>
+                    <button type="submit" class="btn btn-success" @click.prevent="sendMessage()">Invia</button>
                   </form>
                 </div>
+
               </div>
             </div>
           </div>
@@ -162,10 +175,11 @@ export default {
 <style scoped lang="scss">
 @use '../assets/scss/_partial/variables' as *;
 
-.container{
+.container {
   margin-bottom: 100px;
   margin-top: 100px;
 }
+
 .primary {
   background-color: $primary;
   color: white;
