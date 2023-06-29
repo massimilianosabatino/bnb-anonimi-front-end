@@ -105,10 +105,20 @@ export default {
     <!--/Intestazione Appartemento-->
 
     <!--Contenuto(Immagini e info)-->
-    <div id="img-container" class=" pb-5">
+    <div v-if="detail.galleries.length>0" id="img-container" class="d-flex pb-5 flex-wrap ">
+      <div class="w-50 rounded-start-2">
+        <img class="img-fluid h-100" id="immagine" :src="detail.cover_image" :alt="detail.title" />
+      </div>
+      <div class="d-flex w-50 flex-wrap ps-1 h-100 rounded-end-2">
+        <img class="img-fluid w-50 px-1" v-for="(gallery,index) in detail.galleries.slice(0,4)" :class="[(index>=2&&index<=3)?'pt-1':'']" :src="gallery.image_path" :alt="detail.title">
+      </div>
+    </div>
+
+    <div v-else id="img-container" class="pb-5">
       <img class="rounded-3" id="immagine" :src="detail.cover_image" :alt="detail.title" />
       <!--In caso aggiungere Gallery-->
     </div>
+
 
     <!--/Contenuto(Immagini e info)-->
 
