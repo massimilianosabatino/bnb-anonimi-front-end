@@ -47,8 +47,13 @@ export default {
 
 <template>
     <main>
-        <div class="container m-5">
-            <h1>About Us:</h1>
+        <div class="container m-5 mx-auto">
+            <h1 class="text-center">IL SITO</h1>
+            <p class="mb-10 text-center">Questo è il progetto finale del corso da full stack web developer di Boolean. Interpretato da 5 persone, è stato sviluppato utilizzando gli strumenti e le tecnologie appresi durante le 700 ore del corso. Prende ispirazione da un noto sito web dedito alla gestione degli appartamenti da prendere in affitto.</p>
+            <p class="text-center">Lo sviluppo avviene sia lato front-end, sia lato back-end. Nello specifico, I proprietari di appartamenti, registrandosi al sito, possono inserire le informazioni delle loro proprietà e decidere se sponsorizzarle per avere una posizione evidenziata nelle ricerche e in home page. Gli utenti interessati ad affittare, senza registrazione, possono cercare e visualizzare gli appartamenti. Una volta scelto l’appartamento di interesse, possono inviare un messaggio al proprietario tramite la piattaforma, per chiedere maggiori dettagli.</p>
+        </div>
+        <div class="container m-5 mx-auto">
+            <h1 class="text-center">CHI SIAMO</h1>
         </div>
         <div class="container d-flex justify-content-center">
             <div class="row  carte align-items-stretch">
