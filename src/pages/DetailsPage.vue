@@ -145,7 +145,7 @@ export default {
 
       <div class="col-12 col-lg-8 my-2">
         <h4 class="fw-bold">Dove Alloggerai</h4>
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start aling-items-md-center">
           <div class="badge fs-5">{{ detail.address }}</div>
           <div class="text-end fs-5"> <span class="fw-bold">{{ detail.price }}€</span> notte</div>
         </div>
