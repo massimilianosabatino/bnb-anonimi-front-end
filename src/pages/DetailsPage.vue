@@ -55,10 +55,7 @@ export default {
               <a type="button" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-solid fa-xmark"></i></a>
             </div>
             <div class="offcanvas-body">
-              <div v-if="messageSuccess === true" class="text-success fw-bold mb-3" id="inviato">
-                {{ messageResult }}
-              </div>
-              <div v-else-if="messageSuccess === false" class="text-danger fw-bold mb-3" id="fallito">
+              <div class="fw-bold mb-3" id="risultato">
                 {{ messageResult }}
               </div>
               <div class="row">

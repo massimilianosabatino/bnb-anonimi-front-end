@@ -50,23 +50,27 @@ export const useDetailStore = defineStore('detail', {
                 this.messageResult = response.data.result;
                 this.messageSuccess = response.data.success;
             }).then(() => {
-                if(this.messageSuccess){
+                if (this.messageSuccess) {
                     this.name = '';
                     this.email = '';
                     this.content = '';
                 }
-                let fail = document.getElementById('fallito');
-                let send = document.getElementById('inviato');
-                if (fail) {
-                    setInterval(function () {
-                        fail.classList.add('d-none');
+                let result = document.getElementById('risultato');
+                if (this.messageSuccess == true) {
+                    result.classList.remove('text-danger');
+                    result.classList.add('text-success'); 
+                    setTimeout(function () {
+                        result.innerText = '';
+                    }, 3000) 
+                }
+                if(this.messageSuccess === false){
+                    result.classList.remove('text-succes');
+                    result.classList.add('text-danger'); 
+                    setTimeout(function () {
+                        result.innerText = '';
                     }, 3000)
                 }
-                if(send){
-                    setInterval(function () {
-                        send.classList.add('d-none');
-                    }, 3000)
-                }
+                result.innerText = this.messageResult;
             })
         },
     }
