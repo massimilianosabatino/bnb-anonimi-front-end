@@ -40,7 +40,7 @@ export default {
         ...mapWritableState(useSearchStore, ["rooms"]),
         ...mapWritableState(useSearchStore, ["beds"]),
         ...mapWritableState(useSearchStore, ["bath"]),
-        ...mapState(useSearchStore, ['response'])
+        ...mapState(useSearchStore, ['response']),
     },
     created() {
         this.getServices();

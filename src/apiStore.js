@@ -25,7 +25,6 @@ export const useApiStore = defineStore('api', {
         getSponsor() {
             axios.get(this.sponsorApi)
                 .then((response) => {
-                    console.log(response);
                     this.sponsor = response.data.result;
                 })
                 .catch((error) => {

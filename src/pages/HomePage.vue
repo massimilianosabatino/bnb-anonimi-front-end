@@ -5,7 +5,8 @@ import SearchApp from '../components/utils/SearchApp.vue';
 import 'vue3-carousel/dist/carousel.css';
 
 import { useApiStore } from '../apiStore';
-import { mapState, mapActions } from 'pinia';
+import { mapState, mapActions, mapWritableState } from 'pinia';
+import { useSearchStore } from '../searchStore';
 
 export default defineComponent({
     name: 'Autoplay',
@@ -19,9 +20,11 @@ export default defineComponent({
         ...mapActions(useApiStore, ['getSponsor']),
     },
     computed: {
+        ...mapWritableState(useSearchStore,['address']),
         ...mapState(useApiStore, ['sponsor']),
     },
     created() {
+        this.address = '';
         this.getSponsor();
     }
 })

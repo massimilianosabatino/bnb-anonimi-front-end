@@ -18,6 +18,7 @@ export const useSearchStore = defineStore("search", {
       beds: 1,
       bath: 1,
       response: null,
+      address: '',
     };
   },
   actions: {
@@ -37,7 +38,6 @@ export const useSearchStore = defineStore("search", {
         })
         .then((response) => {
           this.apartments = response.data.results;
-          console.log(this.apartments);
           this.response = response.data.success;
         })
         .catch((error) => {
@@ -75,8 +75,10 @@ export const useSearchStore = defineStore("search", {
       input.append(searchBoxHTML);
       
       ttSearchBox.on("tomtom.searchbox.resultselected", (data) => {
+        this.address = data.data.result.address.freeformAddress;
         this.lat = data.data.result.position.lat;
         this.lon = data.data.result.position.lng;
+        console.log(this.address);
       });
       boxInput.forEach(element => {
         element.classList.add('rounded');
@@ -84,6 +86,9 @@ export const useSearchStore = defineStore("search", {
       search.forEach(element => {
         element.classList.add('mt-0');
       });
+      searchbar.forEach((element)=>{
+        element.setAttribute("value", this.address);
+      })
     },
   
   },
