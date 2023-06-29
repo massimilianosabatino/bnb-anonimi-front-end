@@ -32,8 +32,11 @@ export default defineComponent({
 <template>
     <main id="home">
         <div class="container">
+            <div class="pt-5 pb-3 text-center fw-bold fs-2 testo ">Cerca la tua prossima destinazione</div>
             <SearchApp></SearchApp>
+            
             <div id="carousel-desktop" class="d-none d-lg-block">
+                <div class="fs-3 text-center fw-bold testo py-3">Appartamenti in evidenza</div>
                 <Carousel :itemsToShow="3.95" :wrapAround="true" :transition="500" :autoplay="5000">
                     <Slide v-for="slide in sponsor" :key="slide">
                         <router-link :to="{ name: 'Details', params: { slug: slide.slug, id: slide.id } }"
@@ -51,7 +54,8 @@ export default defineComponent({
                     </template>
                 </Carousel>
             </div>
-            <div id="carousel-mobile" class="d-lg-none">
+            <div id="carousel-mobile mb-5" class="d-lg-none">
+                <div class="fs-3 text-center fw-bold testo py-3">Appartamenti in evidenza</div>
                 <Carousel :wrapAround="true" :autoplay="5000">
                     <Slide v-for="slide in sponsor" :key="slide">
                         <router-link :to="{ name: 'Details', params: { slug: slide.slug, id: slide.id } }"
@@ -80,9 +84,11 @@ router-link:hover {
 }
 
 .container {
-    margin-top: 12.5rem;
+    margin-top: 100px;
 }
-
+.testo{
+    text-shadow: 2px 2px lightgray;
+}
 #address {
     font-size: 1rem;
 }
@@ -92,8 +98,8 @@ router-link:hover {
 }
 
 #carousel-desktop {
-    margin-top: 9.375rem;
     width: 100%;
+    margin-top: 6.25rem;
 }
 
 #carousel-mobile {
