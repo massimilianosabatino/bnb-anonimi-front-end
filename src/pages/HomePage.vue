@@ -33,9 +33,15 @@ export default defineComponent({
             <div id="carousel-desktop" class="d-none d-lg-block">
                 <Carousel :itemsToShow="3.95" :wrapAround="true" :transition="500" :autoplay="5000">
                     <Slide v-for="slide in sponsor" :key="slide">
-                        <div class="carousel__item">
-                            <img class="img-fluid" :src="slide.cover_image" :alt="slide.title">
-                        </div>
+                        <router-link :to="{ name: 'Details', params: { slug: slide.slug, id: slide.id } }"
+                            class="text-decoration-none">
+                            <div class="carousel__item card">
+                                <img class="card-img-top img-fluid" :src="slide.cover_image" :alt="slide.title">
+                                <div class="py-2 border-bottom mx-3" id="title">{{ slide.title }}</div>
+                                <div class="p-2" id="address">{{ slide.address }}</div>
+                            </div>
+                        </router-link>
+
                     </Slide>
                     <template #addons>
                         <Navigation />
@@ -45,9 +51,14 @@ export default defineComponent({
             <div id="carousel-mobile" class="d-lg-none">
                 <Carousel :wrapAround="true" :autoplay="5000">
                     <Slide v-for="slide in sponsor" :key="slide">
-                        <div class="carousel__item">
-                            <img class="img-fluid" :src="slide.cover_image" :alt="slide.title">
-                        </div>
+                        <router-link :to="{ name: 'Details', params: { slug: slide.slug, id: slide.id } }"
+                            class="text-decoration-none">
+                            <div class="carousel__item card">
+                                <img class="card-img-top img-fluid" :src="slide.cover_image" :alt="slide.title">
+                                <div class="py-2 border-bottom mx-3" id="title">{{ slide.title }}</div>
+                                <div class="py-2" id="address">{{ slide.address }}</div>
+                            </div>
+                        </router-link>
                     </Slide>
 
                     <template #addons>
@@ -61,9 +72,20 @@ export default defineComponent({
     </main>
 </template>
 <style lang="scss" scoped>
+router-link:hover {
+    scale: 1.1;
+}
 
 .container {
     margin-top: 12.5rem;
+}
+
+#address {
+    font-size: 1rem;
+}
+
+#title {
+    font-size: 1.125rem;
 }
 
 #carousel-desktop {
@@ -80,12 +102,15 @@ export default defineComponent({
 .carousel__item {
     min-height: 18.75rem;
     width: 100%;
-    color: var(--vc-clr-white);
+    color: black;
     font-size: 20px;
     border-radius: 8px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+
+    img {
+        max-height: 200px;
+    }
 }
 
 .carousel__slide {
@@ -97,7 +122,6 @@ export default defineComponent({
     box-sizing: content-box;
     border: 5px solid white;
 }
-
 .carousel__slide {
     padding: 5px;
 }
@@ -136,6 +160,5 @@ export default defineComponent({
 .carousel__slide--active {
     opacity: 1;
     transform: rotateY(0);
-}
-</style>
+}</style>
   

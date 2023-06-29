@@ -5,12 +5,36 @@
 
 @import "bootstrap/scss/bootstrap";
 
-body{
+body {
     font-family: "Quicksand" !important;
 }
-.tt-search-box{
+
+.tt-search-box {
     background-color: transparent;
 }
+
 .tt-search-box-input-container {
     background-color: whitesmoke;
+}
+
+.carousel__next,
+.carousel__prev {
+    width: 3.125rem !important;
+    height: 3.125rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel__icon {
+    fill: $link !important;
+    background-color: transparent;
+    border-radius: 50%;
+    font-size: 25px;
+    background-color: white;
+    opacity: 0;
+}
+
+.carousel:hover .carousel__icon {
+    opacity: 1;
 }
