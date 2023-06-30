@@ -34,4 +34,7 @@ export default {
 #zoom:hover{
   scale: 1.03;
 }
+.card-img-top{
+  max-height: 12.5rem;
+}
 </style>
