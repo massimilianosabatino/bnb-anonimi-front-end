@@ -103,21 +103,51 @@ export default {
     <!--/Intestazione Appartemento-->
 
     <!--Contenuto(Immagini e info)-->
-    <div v-if="detail.galleries.length > 0" id="img-container" class="d-flex pb-5 flex-wrap ">
+    <div v-if="detail.galleries.length > 0" id="img-container" class="d-none d-lg-flex pb-5 flex-wrap ">
       <div class="w-50 rounded-start-2">
         <img class="img-fluid h-100" id="immagine" :src="detail.cover_image" :alt="detail.title" />
       </div>
-      <div class="d-flex w-50 flex-wrap ps-1 h-100 rounded-end-2">
+      <div class="d-none d-lg-flex w-50 flex-wrap ps-1 h-100 rounded-end-2">
         <img class="img-fluid w-50 px-1" v-for="(gallery, index) in detail.galleries.slice(0, 4)"
           :class="[(index >= 2 && index <= 3) ? 'pt-1' : '']" :src="gallery.image_path" :alt="detail.title">
       </div>
     </div>
-
     <div v-else id="img-container" class="pb-5">
       <img class="rounded-3" id="immagine" :src="detail.cover_image" :alt="detail.title" />
-      <!--In caso aggiungere Gallery-->
+    </div>
+    <div  class="pb-5 d-lg-none w-100">
+      <img class="rounded-3" id="immagine" :src="detail.cover_image" :alt="detail.title" />
     </div>
 
+
+    <!--/Contenuto(Immagini e info)-->
+
+
+    <!--Offcanvas Galleria-->
+    <div v-if="detail.galleries.length >0" class="d-flex justify-content-end">
+      <button class="btn btn-outline-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#hasbulla"
+        aria-controls="offcanvasExample">
+        Vedi più immagini
+      </button>
+    </div>
+    <!--Offcanvas Gallery Body-->
+    <div class="offcanvas offcanvas-bottom h-100" tabindex="-1" id="hasbulla"
+      aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Galleria</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body container-lg">
+        <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
+          <div v-for="gallery in detail.galleries" class="w-auto">
+            <img id="hasbulla-esiste" class="rounded" :src="gallery.image_path" :alt="gallery.title">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/Offcanvas Gallery Body-->
+
+    <!--/Offcanvas Galleria-->
 
     <!--/Contenuto(Immagini e info)-->
 
@@ -218,10 +248,17 @@ export default {
   width: 100%;
 }
 
-@media screen and (min-width: 576px) {
-  #service {
-  height: 18.75rem;
-}
+#hasbulla-esiste {
+  width: 300px;
+  height: 150px;
 }
 
-</style>
+.btn-outline-success:hover{
+  background-color: $link;
+}
+@media screen and (min-width: 576px) {
+  #service {
+    height: 18.75rem;
+  }
+
+}</style>
