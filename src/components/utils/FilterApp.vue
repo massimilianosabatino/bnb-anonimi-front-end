@@ -15,6 +15,7 @@ export default {
         ...mapActions(useApiStore, ["getData"]),
         ...mapActions(useSearchStore, ["getServices"]),
         ...mapActions(useSearchStore, ['searchApartment']),
+        ...mapActions(useSearchStore, ['toggle']),
         next() {
             if (this.finish < this.services.length - 1) {
                 this.start += 9;
@@ -41,6 +42,7 @@ export default {
         ...mapWritableState(useSearchStore, ["beds"]),
         ...mapWritableState(useSearchStore, ["bath"]),
         ...mapState(useSearchStore, ['response']),
+        ...mapWritableState(useSearchStore, ['active']),
     },
     created() {
         this.getServices();
@@ -140,6 +142,10 @@ export default {
             <!-- Fine contenuto offcanvas bottom -->
             <!-- Fine offcanvas bottom -->
         </div>
+        <ul>
+            <li>{{ dist }}</li>
+            <li>{{ rooms }}</li>
+        </ul>
         <!-- Card degli appartamenti -->
         <div class="row row-cols-1 g-3 row-cols-md-3 row-cols-lg-4 my-3">
             <div class="col" v-if="apartments" v-for="apartment in apartments">
@@ -216,7 +222,7 @@ export default {
                                     <p class="text-center">{{ price }} €</p>
                                 </div>
                                 <!-- Fine filtri aggiuntivi -->
-                                <div class="btn pippo align-self-center" @click.prevent="searchApartment()">
+                                <div class="btn pippo align-self-center" @click.prevent="searchApartment(),toggle()">
                                     Applica
                                 </div>
                             </form>
@@ -254,7 +260,15 @@ export default {
                     <i class="fa-solid fa-chevron-right"></i>
                 </li>
             </ul>
-            <div class="row row-cols-1 g-3 row-cols-md-3 row-cols-lg-4 my-3" id="apart">
+            <ul class="list-unstyled d-flex align-items-center ms-2 justify-content-center mt-3 mb-0"  v-if="active">
+                <li class="fw-bold">Filtri di ricerca:</li>
+                <li class="px-3 border-end">Distanza: {{ dist }} km</li>
+                <li class="px-3 border-end">Min Stanze: {{ rooms }}</li>
+                <li class="px-3 border-end">Min Bagni: {{ bath }}</li>
+                <li class="px-3 border-end">Min Letti: {{ beds }}</li>
+                <li class="px-3">Prezzo max: {{ price }}€</li>
+            </ul>
+            <div class="row row-cols-1 g-3 row-cols-md-3 row-cols-lg-4 mb-3" id="apart">
                 <div class="col" v-if="apartments" v-for="apartment in apartments">
                     <CardList :apartment="apartment" />
                 </div>

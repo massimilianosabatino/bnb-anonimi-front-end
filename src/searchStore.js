@@ -19,6 +19,7 @@ export const useSearchStore = defineStore("search", {
       bath: 1,
       response: null,
       address: '',
+      active : false,
     };
   },
   actions: {
@@ -90,6 +91,8 @@ export const useSearchStore = defineStore("search", {
         element.setAttribute("value", this.address);
       })
     },
-  
+    toggle(){
+      return this.active = true;
+    }
   },
 });
