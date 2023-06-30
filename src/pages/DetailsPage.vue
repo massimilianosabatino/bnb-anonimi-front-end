@@ -157,7 +157,7 @@ export default {
 
     <!--Servizi-->
     <div class="row my-4">
-      <div class="col-12 col-lg-4 border-end">
+      <div class="col-12 col-lg-5 border-end">
         <ul class="row list-unstyled align-items-center justify-content-center mt-2">
           <li class="col-auto border-end text-center">{{ detail.rooms }} Stanze </li>
           <li class="col-auto border-end text-center">{{ detail.bathrooms }} Bagni</li>
@@ -198,7 +198,7 @@ export default {
 
       </div>
 
-      <div class="col-12 col-lg-8 my-2">
+      <div class="col-12 col-lg-7 my-2">
         <h4 class="fw-bold">Dove Alloggerai</h4>
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start aling-items-md-center">
           <div class="badge fs-5">{{ detail.address }}</div>
