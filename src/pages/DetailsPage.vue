@@ -107,19 +107,16 @@ export default {
     <!--/Intestazione Appartemento-->
 
     <!--Contenuto(Immagini e info)-->
-    <div v-if="detail.galleries.length > 0" id="img-container" class="d-none d-lg-flex pb-5 flex-wrap ">
-      <div class="w-50 rounded-start-2">
-        <img class="img-fluid h-100" id="immagine" :src="detail.cover_image" :alt="detail.title" />
+    <div v-if="detail.galleries.length > 0" id="img-container" class="d-flex  mb-3 flex-wrap">
+      <div class="rounded-start-2 img-container">
+        <img class="img-fluid h-100 w-100 rounded-3" id="immagine" :src="detail.cover_image" :alt="detail.title" />
       </div>
       <div class="d-none d-lg-flex w-50 flex-wrap ps-1 h-100 rounded-end-2">
-        <img class="img-fluid w-50 px-1" v-for="(gallery, index) in detail.galleries.slice(0, 4)"
-          :class="[(index >= 2 && index <= 3) ? 'pt-1' : '']" :src="gallery.image_path" :alt="detail.title">
+        <img class="img-fluid w-50 px-1 rounded-3" v-for="(gallery, index) in detail.galleries.slice(0, 4)"
+          :class="[(index >= 2 && index <= 3) ? 'mt-2' : '']" :src="gallery.image_path" :alt="detail.title">
       </div>
     </div>
     <div v-else id="img-container" class="pb-5">
-      <img class="rounded-3" id="immagine" :src="detail.cover_image" :alt="detail.title" />
-    </div>
-    <div  class="pb-5 d-lg-none w-100">
       <img class="rounded-3" id="immagine" :src="detail.cover_image" :alt="detail.title" />
     </div>
 
@@ -246,12 +243,21 @@ export default {
 
 #img-container {
   width: 100%;
+  height: 100%;
 }
 
 #immagine {
   width: 100%;
 }
+.img-container{
+  width: 100%;
+}
 
+@media screen and (min-width: 62rem) {
+  .img-container{
+    width: 50%;
+  }
+}
 
 @media screen and (min-width: 576px) {
   #service {
