@@ -35,10 +35,14 @@ export default {
 <template>
   <div class="container">
     <!--Intestazione Appartemento-->
+
     <div
       class="p-3 p-lg-4 row row-cols-1 row-cols-lg-2 justify-content-center justify-content-lg-between align-items-center"
       v-if="detail">
-      <div class="p-0">
+      <div class="p-0 d-flex align-items-center">
+        <router-link :to="{ name: 'Search' }" class="me-4 fs-3 text-danger">
+          <i class="fa-solid fa-chevron-left"></i>
+        </router-link>
         <h1>{{ detail.title }}</h1>
       </div>
       <div>
@@ -220,8 +224,7 @@ export default {
 
 @media screen and (min-width: 576px) {
   #service {
-  height: 18.75rem;
+    height: 18.75rem;
+  }
 }
-}
-
 </style>
