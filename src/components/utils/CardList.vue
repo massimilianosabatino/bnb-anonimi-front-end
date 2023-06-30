@@ -14,11 +14,11 @@ export default {
       <hr>
       <p class="card-text">{{ apartment.address }}</p>
       <p class="card-text">
-        <ul class="list-unstyled d-flex mt-3">
+        <ul class="list-unstyled align-items-end d-flex mt-3">
           <li class="mx-2" v-for="(service,index) in apartment.services" v-show="index <= 6">
             <p v-html="service.icon" ></p>
           </li>
-          <li v-if="apartment.services.length > 7">...</li>
+          <li v-if="apartment.services.length > 7" class="p-2"><i class="fa-solid fa-ellipsis"></i></li>
         </ul>
       </p>
       <p class="card-text text-end"><span class="fw-bold">{{ apartment.price }} €</span> a notte</p>
