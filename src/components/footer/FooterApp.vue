@@ -26,7 +26,7 @@ export default {
                                 <ul class="list-unstyled m-0 d-flex flex-column text-center">
                                     <li><a href="#">Privacy</a></li>
                                     <li><a href="#">Termini</a></li>
-                                    <li><a href="#">Dettagli Azienda</a></li>
+                                    <li><router-link :to="{ name: 'AboutUs'}">Dettagli Azienda</router-link></li>
 
                                 </ul>
                                 <ul class="list-unstyled m-0 d-flex flex-column text-center" id="social">

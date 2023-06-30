@@ -82,6 +82,7 @@ main {
     // height: 100vh;
     // overflow-y: scroll;
     margin-bottom: 60px;
+    margin-top: 7.5rem;
 }
 .carte {
     // justify-content: space-between;
