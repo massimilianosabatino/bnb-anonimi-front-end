@@ -15,9 +15,10 @@ export default {
       <p class="card-text">{{ apartment.address }}</p>
       <p class="card-text">
         <ul class="list-unstyled d-flex mt-3">
-          <li class="mx-2" v-for="service in apartment.services">
-            <p v-html="service.icon"></p>
+          <li class="mx-2" v-for="(service,index) in apartment.services" v-show="index <= 6">
+            <p v-html="service.icon" ></p>
           </li>
+          <li v-if="apartment.services.length > 7">...</li>
         </ul>
       </p>
       <p class="card-text text-end"><span class="fw-bold">{{ apartment.price }} €</span> a notte</p>
