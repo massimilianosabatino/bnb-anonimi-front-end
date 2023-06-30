@@ -267,6 +267,5 @@ export default {
   background-color: $link;
 }
 
-
-}</style>
+</style>
 
