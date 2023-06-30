@@ -103,12 +103,13 @@ export default {
     <!--/Intestazione Appartemento-->
 
     <!--Contenuto(Immagini e info)-->
-    <div v-if="detail.galleries.length>0" id="img-container" class="d-flex pb-5 flex-wrap ">
+    <div v-if="detail.galleries.length > 0" id="img-container" class="d-flex pb-5 flex-wrap ">
       <div class="w-50 rounded-start-2">
         <img class="img-fluid h-100" id="immagine" :src="detail.cover_image" :alt="detail.title" />
       </div>
       <div class="d-flex w-50 flex-wrap ps-1 h-100 rounded-end-2">
-        <img class="img-fluid w-50 px-1" v-for="(gallery,index) in detail.galleries.slice(0,4)" :class="[(index>=2&&index<=3)?'pt-1':'']" :src="gallery.image_path" :alt="detail.title">
+        <img class="img-fluid w-50 px-1" v-for="(gallery, index) in detail.galleries.slice(0, 4)"
+          :class="[(index >= 2 && index <= 3) ? 'pt-1' : '']" :src="gallery.image_path" :alt="detail.title">
       </div>
     </div>
 
@@ -131,18 +132,17 @@ export default {
         </ul>
         <div class="mt-5 px-2">
           <h4 class="fw-bold mb-4">Servizi inclusi</h4>
-          <ul class="list-unstyled">
+          <ul class="list-unstyled d-sm-flex flex-column flex-wrap m-0 d-block" id="service">
             <li class="d-flex align-items-center" v-for="(service, index) in detail.services"
-              :class="[index >= 5 ? 'd-none' : '']">
+              :class="[index > 13 ? 'd-none' : '']">
               <p v-html="service.icon"></p>
               <p class="ms-2">{{ service.name }}</p>
             </li>
-            <li>
-              <button class="btn primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-                aria-controls="offcanvasExample">Mostra tutti</button>
-            </li>
           </ul>
-
+          <div v-if="detail.services.length > 13">
+            <button class="btn primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+              aria-controls="offcanvasExample">Mostra tutti</button>
+          </div>
           <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
             aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
@@ -217,4 +217,11 @@ export default {
 #immagine {
   width: 100%;
 }
+
+@media screen and (min-width: 576px) {
+  #service {
+  height: 18.75rem;
+}
+}
+
 </style>
