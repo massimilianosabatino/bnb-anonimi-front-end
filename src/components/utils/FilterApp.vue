@@ -121,7 +121,7 @@ export default {
                                 <div class="btn pippo" @click.prevent="searchApartment(), toggle()">
                                     Applica
                                 </div>
-                                <div class="btn btn-danger" @click.prevent="reset()">
+                                <div class="btn btn-outline-danger" @click.prevent="reset()">
                                     Reset
                                 </div>
                             </div>
@@ -204,6 +204,9 @@ export default {
                             </div>
                             <div class="btn pippo align-self-center" @click.prevent="searchApartment(), toggle()">
                                 Applica
+                            </div>
+                            <div class="btn btn-outline-danger ms-1" @click.prevent="reset()">
+                                Reset
                             </div>
                         </div>
                     </form>
