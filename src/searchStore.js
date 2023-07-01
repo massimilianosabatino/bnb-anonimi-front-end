@@ -19,23 +19,23 @@ export const useSearchStore = defineStore("search", {
       bath: 1,
       response: null,
       address: '',
-      active : false,
+      active: false,
     };
   },
   actions: {
-      searchApartment() {
-        this.apartments=null;
-        this.response=null;
+    searchApartment() {
+      this.apartments = null;
+      this.response = null;
       axios
         .post(this.api, {
-            lat:this.lat,
-            lon:this.lon,
-            dist:this.dist,
-            service:this.clicked,
-            price:this.price,
-            rooms:this.rooms,
-            bath:this.bath,
-            beds: this.beds
+          lat: this.lat,
+          lon: this.lon,
+          dist: this.dist,
+          service: this.clicked,
+          price: this.price,
+          rooms: this.rooms,
+          bath: this.bath,
+          beds: this.beds
         })
         .then((response) => {
           this.apartments = response.data.results;
@@ -46,11 +46,11 @@ export const useSearchStore = defineStore("search", {
         });
     },
     // Chiamata per i servizi
-    getServices(){
+    getServices() {
       axios.get('http://127.0.0.1:8000/api/services')
-      .then((respsonse) => {
-        this.services = respsonse.data.results;
-      })
+        .then((respsonse) => {
+          this.services = respsonse.data.results;
+        })
     },
     chePalle() {
       var options = {
@@ -74,25 +74,49 @@ export const useSearchStore = defineStore("search", {
       let boxInput = document.getElementsByClassName('tt-search-box-input-container');
 
       input.append(searchBoxHTML);
-      
+
+      ttSearchBox.setValue(this.address)
+
       ttSearchBox.on("tomtom.searchbox.resultselected", (data) => {
         this.address = data.data.result.address.freeformAddress;
         this.lat = data.data.result.position.lat;
         this.lon = data.data.result.position.lng;
-        console.log(this.address);
+        
       });
+      
       boxInput.forEach(element => {
         element.classList.add('rounded');
       })
       search.forEach(element => {
         element.classList.add('mt-0');
       });
-      searchbar.forEach((element)=>{
-        element.setAttribute("value", this.address);
+
+      let deleteAddress = document.getElementsByClassName('tt-search-box-close-icon');
+
+      deleteAddress.forEach(element => {
+        element.onclick = () => {
+          this.resetAddress();
+          ttSearchBox.setValue(this.address);
+        };
       })
     },
-    toggle(){
+    toggle() {
       return this.active = true;
+    },
+    reset() {
+      this.dist = 20;
+      this.clicked = [];
+      this.price = 1000;
+      this.rooms = 1;
+      this.beds = 1;
+      this.bath = 1
+      this.searchApartment();
+    },
+    resetAddress(){
+      this.address = ''
+      this.lat = null;
+      this.lon = null;
+      this.searchApartment();
     }
   },
 });

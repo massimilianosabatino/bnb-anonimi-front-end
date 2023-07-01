@@ -16,6 +16,7 @@ export default {
         ...mapActions(useSearchStore, ["getServices"]),
         ...mapActions(useSearchStore, ['searchApartment']),
         ...mapActions(useSearchStore, ['toggle']),
+        ...mapActions(useSearchStore, ['reset']),
         next() {
             if (this.finish < this.services.length - 1) {
                 this.start += 9;
@@ -51,7 +52,6 @@ export default {
 }
 </script>
 <template>
-
     <nav class="row flex-column flex-lg-row justify-content-center align-items-center w-100 flex-nowrap mb-4">
         <!-- Accordion per i filtri -->
         <div class="accordion col-2 d-none d-lg-block" id="accordionExample">
@@ -117,9 +117,15 @@ export default {
                                 <p class="text-center">{{ price }} €</p>
                             </div>
                             <!-- Fine filtri aggiuntivi -->
-                            <div class="btn pippo align-self-center" @click.prevent="searchApartment(), toggle()">
-                                Applica
+                            <div class="d-flex justify-content-center align-items-center gap-2">
+                                <div class="btn pippo" @click.prevent="searchApartment(), toggle()">
+                                    Applica
+                                </div>
+                                <div class="btn btn-danger" @click.prevent="reset()">
+                                    Reset
+                                </div>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -196,7 +202,7 @@ export default {
                                     v-model="price" min="20" max="1000">
                                 <p class="text-center">{{ price }} €</p>
                             </div>
-                            <div class="btn pippo align-self-center" @click.prevent="searchApartment(),toggle()">
+                            <div class="btn pippo align-self-center" @click.prevent="searchApartment(), toggle()">
                                 Applica
                             </div>
                         </div>
