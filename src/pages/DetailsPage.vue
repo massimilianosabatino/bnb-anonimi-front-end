@@ -61,7 +61,7 @@ export default {
               aria-controls="offcanvasRight"><i class="fa-solid fa-envelope me-2"></i>Contattalo</a>
           </div>
 
-          <div class="offcanvas offcanvas-end rounded-2" tabindex="-1" id="offcanvasRight"
+          <div class="offcanvas offcanvas-end rounded-start-2" tabindex="-1" id="offcanvasRight"
             aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
               <h3 class="offcanvas-title">Contatta il proprietario</h3>
@@ -182,7 +182,7 @@ export default {
             <button class="btn primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
               aria-controls="offcanvasExample">Mostra tutti</button>
           </div>
-          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+          <div class="offcanvas offcanvas-start rounded-end-2" tabindex="-1" id="offcanvasExample"
             aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
               <h5 class="offcanvas-title" id="offcanvasExampleLabel">Servizi Inclusi</h5>

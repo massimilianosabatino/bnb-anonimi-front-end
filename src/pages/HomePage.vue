@@ -59,7 +59,7 @@ export default defineComponent({
                     </template>
                 </Carousel>
             </div>
-            <div id="carousel-mobile mb-5" class="d-lg-none">
+            <div id="carousel-mobile" class="d-lg-none">
                 <div class="fs-3 text-center fw-bold testo py-3">Appartamenti in evidenza</div>
                 <Carousel :wrapAround="true" :autoplay="5000">
                     <Slide v-for="slide in sponsor" :key="slide">
