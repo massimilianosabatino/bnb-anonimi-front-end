@@ -87,9 +87,20 @@ export default defineComponent({
 router-link:hover {
     scale: 1.1;
 }
-
-.container {
-    margin-top: 100px;
+#home{
+    margin-top: 6.25rem;
+}
+@media screen and (min-width: 992px) {
+    #home{
+        height: calc(100vh - 150px);
+    }
+    .container{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
 }
 .testo{
     text-shadow: 2px 2px lightgray;
