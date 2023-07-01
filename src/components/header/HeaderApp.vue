@@ -5,6 +5,11 @@ export default {
         loginDrop() {
 
         }
+    },
+    computed:{
+        getEnvLink(){
+            return import.meta.env.VITE_LINK_BACKEND;
+        }
     }
 }
 
@@ -14,8 +19,7 @@ export default {
     <header>
         <div class="container h-100">
             <div class="d-flex align-items-center h-100 justify-content-between text-center">
-                <div id="logo"><img class="img-fluid" src="../../assets/img/logo.png" alt="">
-                </div>
+                <router-link :to="{ name: 'Home' }" id="logo"><img class="img-fluid" src="../../assets/img/logo.png" alt=""> </router-link>
                 <ul
                     class="list-unstyled d-flex justify-content-center align-items-center gap-2 gap-lg-5 m-0 d-none d-sm-flex">
                     <li><router-link :to="{ name: 'Home' }">Home</router-link></li>
@@ -30,7 +34,7 @@ export default {
                     <ul class="dropdown-menu p-2">
                         <li><router-link class="py-3 d-block d-sm-none" :to="{ name: 'Home' }">Home</router-link></li>
                         <li><router-link class="py-3 d-block d-sm-none" :to="{ name: 'Search' }">Appartamenti</router-link></li>
-                        <li><a class="py-3 d-block" href="http://127.0.0.1:8000/">Accedi/Registrati</a></li>
+                        <li><a class="py-3 d-block" :href="getEnvLink" >Accedi/Registrati</a></li>
                     </ul>
                 </div>
             </div>
