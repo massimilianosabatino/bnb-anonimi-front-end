@@ -5,6 +5,8 @@ import { useSearchStore } from "../searchStore";
 import { useDetailStore } from "../detailStore";
 import { useViewStore } from '../viewStore';
 import { mapState, mapActions, mapWritableState } from "pinia";
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 
 export default {
@@ -14,6 +16,11 @@ export default {
     ...mapActions(useDetailStore, ['detailApart']),
     ...mapActions(useViewStore, ['countView']),
     ...mapActions(useDetailStore, ['sendMessage']),
+    fancybox() {
+      Fancybox.bind("[data-fancybox]", {
+
+      });
+    }
   },
   computed: {
     ...mapState(useSearchStore, ["services"]),
@@ -27,6 +34,7 @@ export default {
   created() {
     this.detailApart();
     this.countView();
+    this.fancybox();
   },
 
 };
@@ -125,25 +133,25 @@ export default {
 
 
     <!--Offcanvas Galleria-->
-    <div v-if="detail.galleries.length >0" class="d-flex justify-content-end">
+    <div v-if="detail.galleries.length > 0" class="d-flex justify-content-end">
       <button class="btn btn-outline-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#hasbulla"
         aria-controls="offcanvasExample">
         Vedi più immagini
       </button>
     </div>
     <!--Offcanvas Gallery Body-->
-    <div class="offcanvas offcanvas-bottom h-100" tabindex="-1" id="hasbulla"
-      aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas offcanvas-bottom h-100" tabindex="-1" id="hasbulla" aria-labelledby="offcanvasExampleLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasExampleLabel">Galleria</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body container-lg">
         <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
-          <div v-for="gallery in detail.galleries" class="w-auto">
-            <img id="hasbulla-esiste" class="rounded" :src="gallery.image_path" :alt="gallery.title">
-          </div>
+          <a v-for="gallery in detail.galleries" :href="gallery.image_path" data-fancybox="gallery">
+            <img class="rounded" width="300" height="200" :src="gallery.image_path" />
+          </a>
         </div>
+
       </div>
     </div>
     <!--/Offcanvas Gallery Body-->
@@ -249,12 +257,13 @@ export default {
 #immagine {
   width: 100%;
 }
-.img-container{
+
+.img-container {
   width: 100%;
 }
 
 @media screen and (min-width: 62rem) {
-  .img-container{
+  .img-container {
     width: 50%;
   }
 }
@@ -264,14 +273,14 @@ export default {
     height: 18.75rem;
   }
 }
+
 #hasbulla-esiste {
   width: 300px;
   height: 150px;
 }
 
-.btn-outline-success:hover{
+.btn-outline-success:hover {
   background-color: $link;
 }
-
 </style>
 
