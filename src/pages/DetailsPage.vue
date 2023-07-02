@@ -136,7 +136,7 @@ export default {
     <div v-if="detail.galleries.length > 0" class="d-flex justify-content-end">
       <button class="btn btn-outline-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#hasbulla"
         aria-controls="offcanvasExample">
-        Vedi più immagini
+        Galleria
       </button>
     </div>
     <!--Offcanvas Gallery Body-->
