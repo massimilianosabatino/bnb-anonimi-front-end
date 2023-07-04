@@ -6,10 +6,10 @@ export default {
   name: "SearchApp",
   methods: {
     ...mapActions(useSearchStore, ["searchApartment"]),
-    ...mapActions(useSearchStore, ["chePalle"]),
+    ...mapActions(useSearchStore, ["searchAddress"]),
   },
   mounted() {
-    this.chePalle();
+    this.searchAddress();
   }
 };
 </script>

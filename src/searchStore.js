@@ -52,7 +52,7 @@ export const useSearchStore = defineStore("search", {
           this.services = respsonse.data.results;
         })
     },
-    chePalle() {
+    searchAddress() {
       var options = {
         searchOptions: {
           key: "8SNIXFOGffeajHOtNAuZdfTSBRjqGKau",
